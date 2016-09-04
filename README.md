@@ -1,0 +1,1 @@
+# cordova-phaser-typescript-project-template
