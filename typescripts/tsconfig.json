@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outDir": "../www/js/",
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": false,
+        "noEmitOnError": false,
+        "removeComments": true
+    }
+}

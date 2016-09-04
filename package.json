@@ -1,0 +1,21 @@
+{
+  "name": "cordova-phaser-project-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "copy:phaser": "cp node_modules/phaser/build/phaser.js www/lib",
+    "copy:entity-system": "cp node_modules/ensy/entity-manager.js www/lib",
+	"copy:requirejs": "cp node_modules/requirejs/require.js www/lib",
+    "tsc-compile": "tsc ./typescripts",
+	"build": "npm run copy:phaser & npm run copy:entity-system & npm run copy:requirejs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Wong",
+  "license": "ISC",
+  "dependencies": {
+    "ensy": "^1.2.0",
+    "phaser": "^2.6.2",
+    "requirejs": "^2.2.0"
+  }
+}
