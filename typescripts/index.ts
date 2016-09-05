@@ -21,8 +21,8 @@ class SimpleGame {
 
 
     update() {
-                this.text.position.x +=2;
-                this.text.position.y +=2;
+                this.text.position.x +=5;
+                this.text.position.y +=5;
     }
 
 }

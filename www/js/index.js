@@ -10,8 +10,8 @@ var SimpleGame = (function () {
         this.text = this.game.add.text(0, 0, text, style);
     };
     SimpleGame.prototype.update = function () {
-        this.text.position.x += 2;
-        this.text.position.y += 2;
+        this.text.position.x += 5;
+        this.text.position.y += 5;
     };
     return SimpleGame;
 }());
