@@ -38,8 +38,9 @@
     <body>
     <div id="stage"></div>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="lib/entity-manager.js"></script>
     <script type="text/javascript" src="lib/phaser.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+
+    <!-- Load the entry point of the game and other deps using require. -->
+    <script data-main="js/main.js" src="lib/require.js"></script> 
     </body>
 </html>

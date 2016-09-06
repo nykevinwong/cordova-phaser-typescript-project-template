@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "../www/js/",
         "target": "es5",
-        "module": "commonjs",
+        "module": "amd",
         "sourceMap": false,
         "noEmitOnError": false,
         "removeComments": true
