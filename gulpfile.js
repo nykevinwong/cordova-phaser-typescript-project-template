@@ -9,5 +9,5 @@ gulp.task("copy-scripts", function () {
 });
 
 gulp.task('watch', ['copy-scripts'], function() {
-    gulp.watch('./typescripts/*.ts', ['copy-scripts']);
+    gulp.watch('./typescripts/**/*.ts', ['copy-scripts']);
 });

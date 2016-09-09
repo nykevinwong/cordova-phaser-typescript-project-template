@@ -1,4 +1,6 @@
 
+// Tell typeScript compiler this external js varaible is a global varialbe.
+declare var requirejs: any;
 
 requirejs.config({
     baseUrl: 'js', 
