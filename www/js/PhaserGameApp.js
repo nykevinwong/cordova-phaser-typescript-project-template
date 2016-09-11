@@ -1,4 +1,4 @@
-define(["require", "exports", "states/Boot"], function (require, exports, Boot) {
+define(["require", "exports", "states/Boot", "states/Preloader"], function (require, exports, Boot, Preloader) {
     "use strict";
     var PhaserGameApp = (function () {
         function PhaserGameApp() {
@@ -8,11 +8,8 @@ define(["require", "exports", "states/Boot"], function (require, exports, Boot) 
         };
         PhaserGameApp.prototype.create = function () {
             this.game.state.add('Boot', Boot);
-            this.game.state.start('Boot');
-            this.game.state.add('Boot', Boot);
             this.game.state.add('Preload', Preloader);
-            this.game.state.add('Title', Title);
-            this.game.state.add('Game', Game);
+            this.game.state.start('Boot');
         };
         return PhaserGameApp;
     }());
