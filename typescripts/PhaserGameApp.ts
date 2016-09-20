@@ -1,6 +1,6 @@
 /// <reference path="./definitions/phaser.d.ts" />
 import Boot = require("states/Boot");
-import Preloader = require("states/Preloader");
+import PreLoader = require("states/PreLoader");
 import Title = require("states/Title");
 
 class PhaserGameApp  {
@@ -17,7 +17,7 @@ class PhaserGameApp  {
 
     create() {
         this.game.state.add('Boot', Boot);
-        this.game.state.add('Preload', Preloader);
+        this.game.state.add('Preload', PreLoader);
         this.game.state.add('Title', Title);
       //  this.game.state.add('Game', Game);
 
