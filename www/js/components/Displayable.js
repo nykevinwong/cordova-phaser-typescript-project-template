@@ -1,6 +1,6 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
-    var Displayable = {
+    var DisplayableComponent = {
         name: 'Displayable',
         state: {
             sprite: '',
@@ -8,5 +8,5 @@ define(["require", "exports"], function (require, exports) {
             scaleX: 1,
         }
     };
-    return Displayable;
+    return DisplayableComponent;
 });

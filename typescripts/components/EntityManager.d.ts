@@ -10,6 +10,11 @@ declare module EntityManager
         update(deltaTime: number): void;
     }
 
+    interface Component
+    {
+        name: string;
+        state: any;
+    }
 }
 
 declare class EntityManager {
@@ -18,7 +23,7 @@ declare class EntityManager {
     getUid(): number;
     createEntity(componentIds: string[]): number;
     removeEntity(id:string): EntityManager;
-    addComponent(id, component: any): EntityManager; 
+    addComponent(id, component: EntityManager.Component): EntityManager; 
     removeComponent(id:string): EntityManager;
     getComponentsList():string[];
     addComponentsToEntity(componentIds: string[], entityId:number) : EntityManager;

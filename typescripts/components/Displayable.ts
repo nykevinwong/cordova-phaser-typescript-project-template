@@ -1,6 +1,6 @@
 ///<reference path='Component.d.ts' />
 
-var Displayable : Component.DisplayableComponent = {
+var DisplayableComponent : Component.DisplayableComponent = {
     name: 'Displayable',
     state: {
         sprite: '',
@@ -9,4 +9,4 @@ var Displayable : Component.DisplayableComponent = {
     }  
 };
 
-export = Displayable;
+export = DisplayableComponent;

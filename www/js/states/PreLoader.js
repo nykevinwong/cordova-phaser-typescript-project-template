@@ -20,6 +20,7 @@ define(["require", "exports"], function (require, exports) {
             this.loadingText = this.add.sprite(this.world.centerX - w / 2, this.world.centerY - h / 2, 'preloaderText');
             this.load.setPreloadSprite(this.preloadBar);
             this.game.load.image('gameTitle', 'assets/gfx/title/gametitle.png');
+            this.game.load.audio('algorithmicMusic', 'assets/sounds/algorithmic-music.ogg');
         };
         PreLoader.prototype.create = function () {
             this.add.tween(this.background)

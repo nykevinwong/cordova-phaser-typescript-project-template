@@ -1,3 +1,4 @@
+
 declare module Component {
 
 class DisplayableState {
@@ -19,6 +20,26 @@ class PositionState {
 class PositionComponent {
     name: string;
     state: PositionState;
+}
+
+class AnchorState {
+    x : number;
+    y : number;
+}
+
+class AnchorComponent {
+    name: string;
+    state: AnchorState;
+}
+
+class SoundState {
+    source : string;
+    loop : boolean;
+}
+
+class SoundComponent {
+    name: string;
+    state: SoundState;
 }
 
 }

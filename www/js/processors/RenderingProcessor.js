@@ -8,7 +8,10 @@ define(["require", "exports"], function (require, exports) {
         }
         RenderingProcessor.prototype.createSprite = function (entityId, displayableData) {
             var posData = this.manager.getComponentDataForEntity('Position', entityId);
+            var anchorData = this.manager.getComponentDataForEntity('Anchor', entityId);
             var sprite = this.game.add.sprite(posData.x, posData.y, displayableData.sprite);
+            sprite.anchor.x = anchorData.x;
+            sprite.anchor.y = anchorData.y;
             this.sprites[entityId] = sprite;
         };
         RenderingProcessor.prototype.update = function (deltaTime) {

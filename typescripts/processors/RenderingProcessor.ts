@@ -1,5 +1,5 @@
 /// <reference path="../components/EntityManager.d.ts" />
-///<reference path='../components/Component.d.ts' />
+/// <reference path='../components/Component.d.ts' />
 /// <reference path="../definitions/phaser.d.ts" />
 
 class RenderingProcessor implements EntityManager.Processor {
@@ -15,9 +15,12 @@ class RenderingProcessor implements EntityManager.Processor {
     }
 
     createSprite(entityId:number, displayableData) {
-        var posData = this.manager.getComponentDataForEntity('Position', entityId);
+        var posData:Component.PositionState = this.manager.getComponentDataForEntity('Position', entityId);
+        var anchorData:Component.AnchorState = this.manager.getComponentDataForEntity('Anchor', entityId);
 
         var sprite = this.game.add.sprite(posData.x, posData.y, displayableData.sprite);
+        sprite.anchor.x = anchorData.x;
+        sprite.anchor.y = anchorData.y;
         this.sprites[entityId] = sprite;
     }
 
@@ -26,6 +29,7 @@ class RenderingProcessor implements EntityManager.Processor {
         for (var entityId in displayables) {
             // First create the actual Phaser.Sprite object if it doesn't exist yet.
             if (!this.sprites[entityId]) {
+                // plus sign means converting to number.
                 this.createSprite(+entityId, displayables[entityId]);
             }
         }

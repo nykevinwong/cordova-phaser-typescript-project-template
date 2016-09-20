@@ -5,6 +5,6 @@ requirejs.config({
         'lib': '../lib'
     },
     waitSeconds: 20,
-    deps: ['AppStart'],
+    deps: ['AppStart', 'entity-manager'],
     urlArgs: "t=20160320000000"
 });

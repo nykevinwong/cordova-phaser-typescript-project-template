@@ -1,6 +1,6 @@
 ///<reference path='Component.d.ts' />
 
-var Position : Component.PositionComponent = {
+var PositionComponent : Component.PositionComponent = {
         name: 'Position',
         state: {
             x: 0,
@@ -8,4 +8,4 @@ var Position : Component.PositionComponent = {
         }
 };
 
-export = Position;
+export = PositionComponent;
