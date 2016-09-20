@@ -1,5 +1,7 @@
 # cordova-phaser-typescript-project-template
 
+[demo link](https://nykevinwong.github.io/cordova-phaser-typescript-project-template/www/)
+
 #Prerequisite
 Apache Cordova
 
