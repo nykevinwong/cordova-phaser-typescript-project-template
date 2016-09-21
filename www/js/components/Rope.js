@@ -4,7 +4,7 @@ define(["require", "exports"], function (require, exports) {
         name: 'Rope',
         state: {
             width: 0,
-            pointCount: 10
+            pointCount: 20
         }
     };
     return RopeComponent;

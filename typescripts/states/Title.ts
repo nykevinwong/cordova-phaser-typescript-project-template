@@ -41,25 +41,33 @@ class Title extends Phaser.State {
      }
     
     create() {
-
        // Create ambiance music. 
-            var sound = this.manager.createEntity(['Sound']);
-            this.manager.updateComponentDataForEntity('Sound', sound, {
+       /*
+            var soundEntityId: number  = this.manager.createEntity(['Sound']);
+            this.manager.updateComponentDataForEntity('Sound', soundEntityId, {
                 source: 'algorithmicMusic',
                 loop: true,
             });
-
+*/
 
            var data = [
                 {
+                    components: ['Position', 'Displayable','Anchor','Rope'],
                     sprite: 'gameTitle',
                     x: this.world.centerX,
-                    y: this.world.centerY
-                }];
+                    y: this.world.centerY * 0.5
+                },
+                {
+                    components: ['Position', 'Displayable','Anchor'],
+                    sprite: 'start',
+                    x: this.world.centerX,
+                    y: this.world.centerY * 1.25
+                }
+                ];
 
             for (var i = 0; i < data.length; i++) {
-                var entity = this.manager.createEntity(['Position', 'Displayable','Anchor','Rope']);
                 var d = data[i];
+                var entity = this.manager.createEntity(d.components);
                 this.manager.updateComponentDataForEntity('Displayable', entity, {sprite: d.sprite});
                 this.manager.updateComponentDataForEntity('Position', entity, {x: d.x, y: d.y});
             }
@@ -67,8 +75,7 @@ class Title extends Phaser.State {
     }
 
     update (){
-          this.manager.update(this.game.time.elapsed);
-          
+          this.manager.update(this.game.time.elapsedMS);  
     }
 
 }

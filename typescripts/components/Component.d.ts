@@ -1,3 +1,4 @@
+/// <reference path="EntityManager.d.ts" />
 
 declare module Component {
 
@@ -7,7 +8,7 @@ class DisplayableState {
     scaleX: number;
 }
 
-class DisplayableComponent {
+class DisplayableComponent implements EntityManager.Component {
     name: string;
     state: DisplayableState;
 }
@@ -17,7 +18,7 @@ class PositionState {
     y : number;
 }
 
-class PositionComponent {
+class PositionComponent implements EntityManager.Component  {
     name: string;
     state: PositionState;
 }
@@ -27,7 +28,7 @@ class AnchorState {
     y : number;
 }
 
-class AnchorComponent {
+class AnchorComponent implements EntityManager.Component  {
     name: string;
     state: AnchorState;
 }
@@ -37,7 +38,7 @@ class SoundState {
     loop : boolean;
 }
 
-class SoundComponent {
+class SoundComponent implements EntityManager.Component  {
     name: string;
     state: SoundState;
 }
@@ -47,9 +48,10 @@ class RopeState {
     pointCount : number;
 }
 
-class RopeComponent {
+class RopeComponent implements EntityManager.Component  {
     name: string;
     state: RopeState;
 }
 
 }
+
