@@ -26,6 +26,7 @@ define(["require", "exports"], function (require, exports) {
             this.load.image('preloaderText', gfxProgressbarPath + 'loading.png');
         };
         Boot.prototype.create = function () {
+            this.game.stage.backgroundColor = '#ffffff';
             this.game.state.start('Preload');
         };
         Boot.prototype.update = function () {

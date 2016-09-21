@@ -382,7 +382,8 @@ define(function () {
      */
     EntityManager.prototype.entityHasComponent = function (entityId, componentId) {
         if (!(componentId in this.components)) {
-            throw new Error('Trying to use unknown component: ' + componentId);
+            return false;
+            //throw new Error('Trying to use unknown component: ' + componentId);
         }
 
         return (

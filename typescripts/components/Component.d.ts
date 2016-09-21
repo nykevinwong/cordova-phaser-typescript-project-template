@@ -42,4 +42,14 @@ class SoundComponent {
     state: SoundState;
 }
 
+class RopeState {
+    width: number;
+    pointCount : number;
+}
+
+class RopeComponent {
+    name: string;
+    state: RopeState;
+}
+
 }

@@ -8,6 +8,7 @@ import Displayable = require("components/Displayable");
 import Position =  require("components/Position");
 import Anchor = require("components/Anchor");
 import Sound = require("components/Sound");
+import Rope = require("components/Rope");
 
 // how to use entity-system.js => https://entity-system-js.readthedocs.io/en/latest/#entity-system-for-javascript
 // entity-system.js API => https://entity-system-js.readthedocs.io/en/latest/api/
@@ -16,7 +17,7 @@ class Title extends Phaser.State {
 
     private manager: EntityManager;
     private soundProcessor: SoundProcessor;
-
+    private rope;
     constructor() {
         super();
     }
@@ -24,7 +25,7 @@ class Title extends Phaser.State {
     init() {
        this.manager = new EntityManager()
         // set up entity manager with creatable component list.
-        var components = [Displayable, Position, Anchor, Sound];
+        var components = [Displayable, Position, Anchor, Sound, Rope];
         for (var i = components.length - 1; i >= 0; i--) {
                 this.manager.addComponent(components[i].name, components[i]);
         }
@@ -41,7 +42,7 @@ class Title extends Phaser.State {
     
     create() {
 
-       // Create ambiance music.
+       // Create ambiance music. 
             var sound = this.manager.createEntity(['Sound']);
             this.manager.updateComponentDataForEntity('Sound', sound, {
                 source: 'algorithmicMusic',
@@ -49,12 +50,7 @@ class Title extends Phaser.State {
             });
 
 
-         // Create all background sprites.
-            var backgroundSprites = [
-                'gameTitle',
-            ];
-
-            var data = [
+           var data = [
                 {
                     sprite: 'gameTitle',
                     x: this.world.centerX,
@@ -62,15 +58,17 @@ class Title extends Phaser.State {
                 }];
 
             for (var i = 0; i < data.length; i++) {
-                var entity = this.manager.createEntity(['Position', 'Displayable','Anchor']);
+                var entity = this.manager.createEntity(['Position', 'Displayable','Anchor','Rope']);
                 var d = data[i];
                 this.manager.updateComponentDataForEntity('Displayable', entity, {sprite: d.sprite});
                 this.manager.updateComponentDataForEntity('Position', entity, {x: d.x, y: d.y});
             }
+
     }
 
     update (){
           this.manager.update(this.game.time.elapsed);
+          
     }
 
 }

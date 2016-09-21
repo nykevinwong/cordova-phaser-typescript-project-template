@@ -10,25 +10,20 @@ define(["require", "exports"], function (require, exports) {
             var posData = this.manager.getComponentDataForEntity('Position', entityId);
             var anchorData = this.manager.getComponentDataForEntity('Anchor', entityId);
             if (this.manager.entityHasComponent(entityId, "Rope")) {
-                var image = this.game.cache.getImage(displayableData.sprite);
-                var ropeData = this.manager.getComponentDataForEntity('Rope', entityId);
                 var count = 0;
-                var totalPoints = ropeData.pointCount;
-                var length = (ropeData.width == 0) ? (image.width / totalPoints) : (ropeData.width / totalPoints);
+                var totalPoints = 10;
+                var length = 800 / totalPoints;
                 var points = [];
                 for (var i = 0; i < totalPoints; i++) {
                     points.push(new Phaser.Point(i * length, 0));
                 }
-                var x = posData.x - image.width * anchorData.x;
-                var y = posData.y - image.height * anchorData.y;
-                var rope = this.game.add.rope(x, y, displayableData.sprite, null, points);
+                var rope = this.game.add.rope(posData.x, posData.y, displayableData.sprite, null, points);
                 rope.updateAnimation = function () {
                     count += 0.1;
                     for (var i = 0; i < this.points.length; i++) {
                         this.points[i].y = Math.sin(i * 0.5 + count) * totalPoints;
                     }
                 };
-                this.sprites[entityId] = rope;
             }
             else {
                 var sprite = this.game.add.sprite(posData.x, posData.y, displayableData.sprite);

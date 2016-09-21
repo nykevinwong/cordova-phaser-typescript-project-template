@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/RenderingProcessor", "processors/SoundProcessor", "components/Displayable", "components/Position", "components/Anchor", "components/Sound"], function (require, exports, EntityManager, RenderingProcessor, SoundProcessor, Displayable, Position, Anchor, Sound) {
+define(["require", "exports", "components/EntityManager", "processors/RenderingProcessor", "processors/SoundProcessor", "components/Displayable", "components/Position", "components/Anchor", "components/Sound", "components/Rope"], function (require, exports, EntityManager, RenderingProcessor, SoundProcessor, Displayable, Position, Anchor, Sound, Rope) {
     "use strict";
     var Title = (function (_super) {
         __extends(Title, _super);
@@ -12,7 +12,7 @@ define(["require", "exports", "components/EntityManager", "processors/RenderingP
         }
         Title.prototype.init = function () {
             this.manager = new EntityManager();
-            var components = [Displayable, Position, Anchor, Sound];
+            var components = [Displayable, Position, Anchor, Sound, Rope];
             for (var i = components.length - 1; i >= 0; i--) {
                 this.manager.addComponent(components[i].name, components[i]);
             }
@@ -29,9 +29,6 @@ define(["require", "exports", "components/EntityManager", "processors/RenderingP
                 source: 'algorithmicMusic',
                 loop: true,
             });
-            var backgroundSprites = [
-                'gameTitle',
-            ];
             var data = [
                 {
                     sprite: 'gameTitle',
@@ -39,7 +36,7 @@ define(["require", "exports", "components/EntityManager", "processors/RenderingP
                     y: this.world.centerY
                 }];
             for (var i = 0; i < data.length; i++) {
-                var entity = this.manager.createEntity(['Position', 'Displayable', 'Anchor']);
+                var entity = this.manager.createEntity(['Position', 'Displayable', 'Anchor', 'Rope']);
                 var d = data[i];
                 this.manager.updateComponentDataForEntity('Displayable', entity, { sprite: d.sprite });
                 this.manager.updateComponentDataForEntity('Position', entity, { x: d.x, y: d.y });

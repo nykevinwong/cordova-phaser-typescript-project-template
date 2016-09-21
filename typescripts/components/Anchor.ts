@@ -1,3 +1,5 @@
+///<reference path='Component.d.ts' />
+
 var AnchorComponent : Component.AnchorComponent = {
     name: 'Anchor',
     state: { // center as the default
