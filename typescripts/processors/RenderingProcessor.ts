@@ -35,9 +35,9 @@ class RenderingProcessor implements EntityManager.Processor {
             var x = posData.x - image.width * anchorData.x;
             var y = posData.y - image.height * anchorData.y;
             var rope: Phaser.Rope = this.game.add.rope(x, y, displayableData.sprite, null, points);  
-
+            
             rope.updateAnimation = function() {
-                count += 0.2 * (1/this.game.time.elapsedMS) ;
+                count += 0.4 * (1/this.game.time.elapsedMS) ;
 
                 for (var i = 0; i < this.points.length; i++)
                 {

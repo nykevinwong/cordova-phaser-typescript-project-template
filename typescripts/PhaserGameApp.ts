@@ -2,12 +2,15 @@
 import Boot = require("states/Boot");
 import PreLoader = require("states/PreLoader");
 import Title = require("states/Title");
+import Utils = require("utils/Utils");
 
 class PhaserGameApp  {
     private game: Phaser.Game;
 
     constructor() {
-        this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', { init: this.init, create: this.create });
+        var screenDims = Utils.ScreenUtils.calculateScreenMetrics(800, 500,
+                Utils.Orientation.LANDSCAPE);
+        this.game = new Phaser.Game(screenDims.gameWidth, screenDims.gameHeight, Phaser.AUTO, 'content', { init: this.init, create: this.create });
 
     }
 

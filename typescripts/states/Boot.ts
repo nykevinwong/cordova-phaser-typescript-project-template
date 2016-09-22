@@ -1,4 +1,5 @@
 /// <reference path="../definitions/phaser.d.ts" />
+import Utils = require("utils/Utils");
 
 class Boot extends Phaser.State {
 
@@ -7,7 +8,7 @@ class Boot extends Phaser.State {
     }
 
     init() {
-            this.game.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);
+           this.game.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);
 
             // //  Unless you specifically know your game needs to support multi-touch I would recommend setting this to 1
             this.input.maxPointers = 1;
@@ -15,24 +16,25 @@ class Boot extends Phaser.State {
             // //  Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
             this.game.stage.disableVisibilityChange = false;
 
-            if (this.game.device.desktop)
-            {
-                 //  If you have any desktop specific settings, they can go in here
-                 //this.scale.pageAlignHorizontally = true;
+            var screenDims = Utils.ScreenUtils.screenMetrics;
+
+            if (this.game.device.desktop) {
+                console.log("DESKTOP");
+                this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+                this.scale.setUserScale(screenDims.scaleX, screenDims.scaleY);
+                this.scale.pageAlignHorizontally = true;
+                this.scale.pageAlignVertically = true;
             }
-            else
-            {
-                 //  Same goes for mobile settings.
-                 //  In this case we're saying "scale the game, no lower than 480x260 and no higher than 1024x768"
-                 //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-                 //this.scale.minWidth = 480;
-                 //this.scale.minHeight = 260;
-                 //this.scale.maxWidth = 1024;
-                 //this.scale.maxHeight = 768;
-                 //this.scale.forceLandscape = true;
-                 //this.scale.pageAlignHorizontally = true;
-                 //this.scale.setScreenSize(true);
+            else {
+                console.log("MOBILE");
+                this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+                this.scale.setUserScale(screenDims.scaleX, screenDims.scaleY);
+                this.scale.pageAlignHorizontally = true;
+                this.scale.pageAlignVertically = true;
+                this.scale.forceOrientation(true, false);
             }
+
+            console.log(screenDims);
     }
 
    preload () {

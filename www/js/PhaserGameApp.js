@@ -1,8 +1,9 @@
-define(["require", "exports", "states/Boot", "states/PreLoader", "states/Title"], function (require, exports, Boot, PreLoader, Title) {
+define(["require", "exports", "states/Boot", "states/PreLoader", "states/Title", "utils/Utils"], function (require, exports, Boot, PreLoader, Title, Utils) {
     "use strict";
     var PhaserGameApp = (function () {
         function PhaserGameApp() {
-            this.game = new Phaser.Game(800, 600, Phaser.AUTO, 'content', { init: this.init, create: this.create });
+            var screenDims = Utils.ScreenUtils.calculateScreenMetrics(800, 500, Utils.Orientation.LANDSCAPE);
+            this.game = new Phaser.Game(screenDims.gameWidth, screenDims.gameHeight, Phaser.AUTO, 'content', { init: this.init, create: this.create });
         }
         PhaserGameApp.prototype.init = function () {
         };
