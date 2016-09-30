@@ -2,6 +2,7 @@
 /// <reference path="../components/EntityManager.d.ts" />
 
 import EntityManager=  require("components/EntityManager");
+import GlobalEntityManager = require("../GlobalEntityManager")
 import RenderingProcessor = require("processors/RenderingProcessor");
 import SoundProcessor = require("processors/SoundProcessor");
 import Displayable = require("components/Displayable");
@@ -34,21 +35,23 @@ class Title extends Phaser.State {
         this.soundProcessor = new SoundProcessor(this.manager, this.game);
         this.manager.addProcessor(this.soundProcessor);
         this.manager.addProcessor(new RenderingProcessor(this.manager, this.game))
+        
     }
 
      end() {
             this.soundProcessor.stopAll();
+            this.game.state.start('MenuTest', true, false);
      }
     
     create() {
        // Create ambiance music. 
-       /*
+       
             var soundEntityId: number  = this.manager.createEntity(['Sound']);
             this.manager.updateComponentDataForEntity('Sound', soundEntityId, {
                 source: 'algorithmicMusic',
                 loop: true,
             });
-*/
+
 
            var data = [
                 {
@@ -75,7 +78,15 @@ class Title extends Phaser.State {
     }
 
     update (){
+          GlobalEntityManager.update(this.game.time.elapsedMS);
           this.manager.update(this.game.time.elapsedMS);  
+
+            var inputs = GlobalEntityManager.getComponentsData('Input');
+            for (var i in inputs) {
+                if (inputs[i].active) {
+                    this.end();
+                }
+            }
     }
 
 }

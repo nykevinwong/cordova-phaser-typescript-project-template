@@ -1,4 +1,7 @@
 /// <reference path="../definitions/phaser.d.ts" />
+import GlobalEntityManager = require("../GlobalEntityManager")
+import InputProcessor = require("processors/InputProcessor");
+import Input = require("components/Input");
 
 class PreLoader extends Phaser.State {
 
@@ -10,6 +13,10 @@ class PreLoader extends Phaser.State {
         super();
     }
 
+   init() {
+         GlobalEntityManager.addComponent(Input.name, Input);
+	     GlobalEntityManager.addProcessor(new InputProcessor(this.game));
+   }
 
    preload () {
             var w = this.game.cache.getImage("preloaderText").width;

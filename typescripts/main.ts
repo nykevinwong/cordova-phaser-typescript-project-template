@@ -6,6 +6,7 @@ requirejs.config({
 
     paths: {
         'entity-manager': '../lib/entity-manager',
+        'slick-ui': '../lib/slick-ui.min',
         'lib': '../lib'
     },
 

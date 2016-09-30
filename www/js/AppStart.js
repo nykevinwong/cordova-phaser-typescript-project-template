@@ -13,11 +13,13 @@ define(["require", "exports", "PhaserGameApp"], function (require, exports, Phas
                 this.start();
             }
         };
-        Application.prototype.start = function () { console.log("Starting app"); var game = new PhaserGameApp(); };
+        Application.prototype.start = function () { console.log("Starting app"); this.game = new PhaserGameApp(); };
         Application.prototype.pause = function () { console.log('app paused'); };
+        Application.prototype.getGame = function () { return this.game; };
         return Application;
     }());
     var app = new Application();
     document.addEventListener('pause', function () { app.pause(); });
     app.initialize();
+    return app;
 });

@@ -3,13 +3,17 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports"], function (require, exports) {
+define(["require", "exports", "../GlobalEntityManager", "processors/InputProcessor", "components/Input"], function (require, exports, GlobalEntityManager, InputProcessor, Input) {
     "use strict";
     var PreLoader = (function (_super) {
         __extends(PreLoader, _super);
         function PreLoader() {
             _super.call(this);
         }
+        PreLoader.prototype.init = function () {
+            GlobalEntityManager.addComponent(Input.name, Input);
+            GlobalEntityManager.addProcessor(new InputProcessor(this.game));
+        };
         PreLoader.prototype.preload = function () {
             var w = this.game.cache.getImage("preloaderText").width;
             var h = this.game.cache.getImage("preloaderText").height;

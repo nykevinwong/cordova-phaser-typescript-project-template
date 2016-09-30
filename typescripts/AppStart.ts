@@ -14,8 +14,10 @@ class Application {
             }   
     }
 
-    start() { console.log("Starting app");     var game = new PhaserGameApp(); }
+    start() { console.log("Starting app");    this.game = new PhaserGameApp();  }
     pause() { console.log('app paused'); }
+
+    getGame(): PhaserGameApp { return this.game; }
 }
  
 declare var app: Application;
@@ -24,4 +26,7 @@ var app = new Application();
 document.addEventListener('pause', ()=> { app.pause(); });
 
 app.initialize();
+
+export = app;
+
 

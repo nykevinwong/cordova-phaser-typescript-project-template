@@ -2,6 +2,8 @@
 
 declare module Component {
 
+type ComponentType = "Displayable"|"Position"|"Anchor"|"Sounds"|"Rope"|"Input";
+
 class DisplayableState {
     sprite: string;
     deleted: boolean;
@@ -51,6 +53,19 @@ class RopeState {
 class RopeComponent implements EntityManager.Component  {
     name: string;
     state: RopeState;
+}
+
+class InputState {
+        action: string;
+        keys: any[];
+        player: number;
+        active: boolean;
+        padButtons: any[];
+}
+
+class InputComponent implements EntityManager.Component  {
+    name: string;
+    state: InputState;
 }
 
 }

@@ -19,8 +19,9 @@
     "requirejs": "^2.2.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-typescript": "^2.13.6",
-    "watchify": "^3.7.0"
+    "del": "*",
+    "gulp": "*",
+    "gulp-typescript": "*",
+    "watchify": "*"
   }
 }

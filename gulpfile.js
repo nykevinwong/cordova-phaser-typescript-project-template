@@ -6,7 +6,7 @@ var tsProject = ts.createProject("./typescripts/tsconfig.json");
 
 gulp.task("copy-scripts", function () {
     return tsProject.src()
-        .pipe(ts(tsProject))
+        .pipe(tsProject())
         .js.pipe(gulp.dest("./www/js"));
 });
 

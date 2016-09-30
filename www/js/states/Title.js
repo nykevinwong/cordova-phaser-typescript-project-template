@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/RenderingProcessor", "processors/SoundProcessor", "components/Displayable", "components/Position", "components/Anchor", "components/Sound", "components/Rope"], function (require, exports, EntityManager, RenderingProcessor, SoundProcessor, Displayable, Position, Anchor, Sound, Rope) {
+define(["require", "exports", "components/EntityManager", "../GlobalEntityManager", "processors/RenderingProcessor", "processors/SoundProcessor", "components/Displayable", "components/Position", "components/Anchor", "components/Sound", "components/Rope"], function (require, exports, EntityManager, GlobalEntityManager, RenderingProcessor, SoundProcessor, Displayable, Position, Anchor, Sound, Rope) {
     "use strict";
     var Title = (function (_super) {
         __extends(Title, _super);
@@ -22,8 +22,14 @@ define(["require", "exports", "components/EntityManager", "processors/RenderingP
         };
         Title.prototype.end = function () {
             this.soundProcessor.stopAll();
+            this.game.state.start('MenuTest', true, false);
         };
         Title.prototype.create = function () {
+            var soundEntityId = this.manager.createEntity(['Sound']);
+            this.manager.updateComponentDataForEntity('Sound', soundEntityId, {
+                source: 'algorithmicMusic',
+                loop: true,
+            });
             var data = [
                 {
                     components: ['Position', 'Displayable', 'Anchor', 'Rope'],
@@ -46,7 +52,19 @@ define(["require", "exports", "components/EntityManager", "processors/RenderingP
             }
         };
         Title.prototype.update = function () {
+            GlobalEntityManager.update(this.game.time.elapsedMS);
             this.manager.update(this.game.time.elapsedMS);
+            var inputs = GlobalEntityManager.getComponentsData('Input');
+            for (var i in inputs) {
+                if (inputs[i].active) {
+                    this.end();
+                }
+            }
+
+            if (this.game.input.pointer1.isDown)
+            {
+                this.end();
+            }
         };
         return Title;
     }(Phaser.State));
