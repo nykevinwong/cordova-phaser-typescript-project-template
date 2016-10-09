@@ -60,11 +60,6 @@ define(["require", "exports", "components/EntityManager", "../GlobalEntityManage
                     this.end();
                 }
             }
-
-            if (this.game.input.pointer1.isDown)
-            {
-                this.end();
-            }
         };
         return Title;
     }(Phaser.State));

@@ -6,9 +6,17 @@ requirejs.config({
 
     paths: {
         'entity-manager': '../lib/entity-manager',
-        'slick-ui': '../lib/slick-ui.min',
-        'lib': '../lib'
+       // 'slick-ui': '../lib/slick-ui.min',
+        'EZGUI': '../lib/EZGUI',
+        'lib': '../lib',
+        'EZGUI-Phaser-Compatiblity': '../lib/phaser-compat-2.4.js'
     },
+/*
+    shim: {
+        'EZGUI':{
+            deps: ['EZGUI-Phaser-Compatiblity']
+        }
+    },*/
 
     waitSeconds: 20,
 
