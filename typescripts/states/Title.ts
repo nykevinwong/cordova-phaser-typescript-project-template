@@ -81,6 +81,9 @@ class Title extends Phaser.State {
           GlobalEntityManager.update(this.game.time.elapsedMS);
           this.manager.update(this.game.time.elapsedMS);  
 
+            if (this.game.input.pointer1.isDown)
+                this.end();
+                
             var inputs = GlobalEntityManager.getComponentsData('Input');
             for (var i in inputs) {
                 if (inputs[i].active) {
