@@ -26,10 +26,6 @@ define(["require", "exports", "components/EntityManager", "../GlobalEntityManage
         };
         Title.prototype.create = function () {
             var soundEntityId = this.manager.createEntity(['Sound']);
-            this.manager.updateComponentDataForEntity('Sound', soundEntityId, {
-                source: 'algorithmicMusic',
-                loop: true,
-            });
             var data = [
                 {
                     components: ['Position', 'Displayable', 'Anchor', 'Rope'],

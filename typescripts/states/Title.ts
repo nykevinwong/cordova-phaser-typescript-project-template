@@ -47,10 +47,10 @@ class Title extends Phaser.State {
        // Create ambiance music. 
        
             var soundEntityId: number  = this.manager.createEntity(['Sound']);
-            this.manager.updateComponentDataForEntity('Sound', soundEntityId, {
+/*            this.manager.updateComponentDataForEntity('Sound', soundEntityId, {
                 source: 'algorithmicMusic',
                 loop: true,
-            });
+            });*/
 
 
            var data = [
