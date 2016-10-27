@@ -3,9 +3,10 @@ requirejs.config({
     paths: {
         'entity-manager': '../lib/entity-manager',
         'slick-ui': '../lib/slick-ui.min',
-        'lib': '../lib'
+        'lib': '../lib',
+        'phaser-swipe': '../lib/swipe'
     },
     waitSeconds: 20,
-    deps: ['AppStart', 'entity-manager'],
+    deps: ['AppStart', 'entity-manager', 'phaser-swipe'],
     urlArgs: "t=20160320000000"
 });

@@ -40,7 +40,7 @@ class Title extends Phaser.State {
 
      end() {
             this.soundProcessor.stopAll();
-            this.game.state.start('MenuTest', true, false);
+            this.game.state.start('Game', true, false);
      }
     
     create() {

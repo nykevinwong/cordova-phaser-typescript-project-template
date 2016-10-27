@@ -22,7 +22,7 @@ define(["require", "exports", "components/EntityManager", "../GlobalEntityManage
         };
         Title.prototype.end = function () {
             this.soundProcessor.stopAll();
-            this.game.state.start('MenuTest', true, false);
+            this.game.state.start('Game', true, false);
         };
         Title.prototype.create = function () {
             var soundEntityId = this.manager.createEntity(['Sound']);
@@ -59,11 +59,6 @@ define(["require", "exports", "components/EntityManager", "../GlobalEntityManage
                 if (inputs[i].active) {
                     this.end();
                 }
-            }
-
-            if (this.game.input.pointer1.isDown)
-            {
-                this.end();
             }
         };
         return Title;

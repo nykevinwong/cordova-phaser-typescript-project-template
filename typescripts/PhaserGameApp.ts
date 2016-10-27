@@ -3,6 +3,7 @@ import Boot = require("states/Boot");
 import PreLoader = require("states/PreLoader");
 import Title = require("states/Title");
 import MenuTest = require("states/MenuTest");
+import Game = require("states/Game");
 import Utils = require("utils/Utils");
 
 class PhaserGameApp  {
@@ -26,6 +27,7 @@ class PhaserGameApp  {
         this.game.state.add('Preload', PreLoader);
         this.game.state.add('Title', Title);
         this.game.state.add('MenuTest', MenuTest);
+        this.game.state.add('Game', Game);
 
         this.game.state.start('Boot');
     }

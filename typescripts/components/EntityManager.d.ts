@@ -15,9 +15,11 @@ declare module EntityManager
         name: string;
         state: any;
     }
+
+    
 }
 
-declare class EntityManager {
+declare  class EntityManager {
 
     constructor();
     getUid(): number;

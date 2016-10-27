@@ -20,6 +20,19 @@ define(["require", "exports", "slick-ui"], function (require, exports, SlickUI) 
             this.slickUI.load('assets/ui/kenney/kenney.json');
         };
         MenuTest.prototype.create = function () {
+            var game = this.game;
+            var panel = new SlickUI.Element.Panel(game.width * 0.05, game.height * 0.05, game.width * 0.9, game.height * 0.9);
+            this.slickUI.add(panel);
+            var button = new SlickUI.Element.Button(0, 0, 140, 80);
+            button.add(new SlickUI.Element.Text(0, 0, "Save game")).center();
+            button.x = panel.width - button.width;
+            button.visible = true;
+            panel.add(button).events.onInputUp.add(function () {
+                console.log('Clicked save game');
+            });
+        };
+        MenuTest.prototype.create2 = function () {
+            var game = this.game;
             this.game.add.sprite(0, -125, 'backdrop');
             var button, panel, menuButton;
             this.slickUI.add(panel = new SlickUI.Element.Panel(this.game.width - 156, 8, 150, this.game.height - 16));
@@ -42,38 +55,18 @@ define(["require", "exports", "slick-ui"], function (require, exports, SlickUI) 
                 }
                 panel.visible = true;
                 panel.x = basePosition + 156;
-                this.game.add.tween(panel).to({ x: basePosition }, 500, Phaser.Easing.Exponential.Out, true).onComplete.add(function () {
+                game.add.tween(panel).to({ x: basePosition }, 500, Phaser.Easing.Exponential.Out, true).onComplete.add(function () {
                     menuButton.visible = false;
                 });
                 this.slickUI.container.displayGroup.bringToTop(panel.container.displayGroup);
             }, this);
             button.events.onInputUp.add(function () {
-                this.game.add.tween(panel).to({ x: basePosition + 156 }, 500, Phaser.Easing.Exponential.Out, true).onComplete.add(function () {
+                game.add.tween(panel).to({ x: basePosition + 156 }, 500, Phaser.Easing.Exponential.Out, true).onComplete.add(function () {
                     panel.visible = false;
                     panel.x -= 156;
                 });
                 menuButton.visible = true;
             });
-            var cb1, cb2;
-            panel.add(cb1 = new SlickUI.Element.Checkbox(0, 100, SlickUI.Element.Checkbox.TYPE_RADIO));
-            cb1.events.onInputDown.add(function () {
-                if (cb1.checked && cb2.checked) {
-                    cb2.checked = false;
-                }
-                if (!cb1.checked && !cb2.checked) {
-                    cb1.checked = true;
-                }
-            }, this);
-            panel.add(cb2 = new SlickUI.Element.Checkbox(50, 100, SlickUI.Element.Checkbox.TYPE_RADIO));
-            cb2.events.onInputDown.add(function () {
-                if (cb1.checked && cb2.checked) {
-                    cb1.checked = false;
-                }
-                if (!cb1.checked && !cb2.checked) {
-                    cb2.checked = true;
-                }
-            }, this);
-            panel.add(new SlickUI.Element.Checkbox(100, 100));
         };
         return MenuTest;
     }(Phaser.State));
