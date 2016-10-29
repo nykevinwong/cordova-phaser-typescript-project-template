@@ -2,46 +2,33 @@
 /// <reference path='../components/Component.d.ts' />
 /// <reference path="../definitions/phaser.d.ts" />
 /// <reference path="../definitions/phaser-swipe.d.ts" />
-import Swipe = require("utils/Swipe");
 
 class SwipeProcessor implements EntityManager.Processor {
 
     private manager: EntityManager;
     private game: Phaser.Game;
-    private swipe: Swipe;
+    private kineticScrolling:any;
 
     constructor(manager: EntityManager, game: Phaser.Game) {
         this.manager = manager;
         this.game = game;
-        this.swipe = new Swipe(this.game);
+        this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
+        this.game.kineticScrolling.configure({
+            kineticMovement: false,
+            timeConstantScroll: 325, //really mimic iOS
+            horizontalScroll: true,
+            verticalScroll: true,
+            horizontalWheel: false,
+            verticalWheel: false,
+            deltaWheel: 40
+        });
+        this.game.kineticScrolling.start();
     }
 
     update(deltaTime: number): void {
 
-        // in update
-        var direction = this.swipe.check();
-        var speed = 4000 * (1 / deltaTime);
-
-        if (direction !== null) {
-            // direction= { x: x, y: y, direction: direction }
-            switch (direction.direction) {
-                case this.swipe.DIRECTION_LEFT: // do something
-                    this.game.camera.x += speed;
-                    break;
-                case this.swipe.DIRECTION_RIGHT:
-                    this.game.camera.x -= speed;
-                    break;
-                case this.swipe.DIRECTION_UP:
-                    this.game.camera.y += speed;
-                    break;
-                case this.swipe.DIRECTION_DOWN:
-                    this.game.camera.y -= speed;
-                    break;
-            }
-        }
 
     }
-
 }
 
 export = SwipeProcessor;
