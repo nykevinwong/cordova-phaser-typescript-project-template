@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager"], function (require, exports, EntityManager) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor"], function (require, exports, EntityManager, SwipeProcessor) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -17,6 +17,8 @@ define(["require", "exports", "components/EntityManager"], function (require, ex
             this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
             this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
             this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
+            this.swipProcessor = new SwipeProcessor(this.manager, this.game, this.game);
+            this.manager.addProcessor(this.swipProcessor);
         };
         Game.prototype.init = function () {
             this.manager = new EntityManager();
@@ -35,11 +37,12 @@ define(["require", "exports", "components/EntityManager"], function (require, ex
             var offestY = this.game.camera.y % 20;
             this.base.input.enableSnap(20, 20, true, true, offestX, offestY);
             this.rect = new Phaser.Rectangle(0, 0, 60, 60);
-            var game = this.game;
             this.base.events.onDragStart.add(function (sprite, pointer) {
                 this.rectVisible = true;
+                this.swipProcessor.stopKineticScrolling();
             }, this);
             this.base.events.onDragStop.add(function (sprite, pointer) {
+                this.swipProcessor.startKineticScrolling();
             }, this);
             this.game.input.onDown.add(function () {
                 this.rectVisible = false;

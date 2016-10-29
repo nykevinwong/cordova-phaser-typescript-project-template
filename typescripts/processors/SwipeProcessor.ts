@@ -9,20 +9,33 @@ class SwipeProcessor implements EntityManager.Processor {
     private game: Phaser.Game;
     private kineticScrolling:any;
 
-    constructor(manager: EntityManager, game: Phaser.Game) {
+    constructor(manager: EntityManager, game: Phaser.Game, target:any) {
         this.manager = manager;
         this.game = game;
-        this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
-        this.game.kineticScrolling.configure({
+        this.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
+        this.kineticScrolling.configure({
             kineticMovement: false,
             timeConstantScroll: 325, //really mimic iOS
             horizontalScroll: true,
             verticalScroll: true,
             horizontalWheel: false,
             verticalWheel: false,
-            deltaWheel: 40
+            deltaWheel: 40,
+            taget: target
         });
-        this.game.kineticScrolling.start();
+
+        this.startKineticScrolling();
+      
+    }
+
+    startKineticScrolling()
+    {
+        this.kineticScrolling.start();
+    }
+
+    stopKineticScrolling()
+    {
+        this.kineticScrolling.stop();
     }
 
     update(deltaTime: number): void {

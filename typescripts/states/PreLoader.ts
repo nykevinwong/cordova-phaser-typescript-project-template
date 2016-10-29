@@ -35,7 +35,8 @@ class PreLoader extends Phaser.State {
             this.game.load.image('gameTitle', 'assets/gfx/title/gametitle.png');
             this.game.load.image('start', 'assets/gfx/title/start.png');
             this.game.load.image('continue', 'assets/gfx/title/continue.png');
-            
+
+  
         //    this.game.load.audio('algorithmicMusic','assets/sounds/algorithmic-music.ogg');
    }
  

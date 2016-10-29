@@ -6,6 +6,7 @@ class Game extends Phaser.State {
     private layer: Phaser.TilemapLayer;
     private manager: EntityManager;
     private clicks: number;
+    private swipProcessor : SwipeProcessor;
 
     constructor() {
         super();
@@ -13,18 +14,18 @@ class Game extends Phaser.State {
 
     preload() {
 
-        this.game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
-        this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
-        this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
-        this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');      
-        this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
 
-        
+            this.game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
+            this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
+            this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
+            this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');      
+            this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
+            this.swipProcessor = new SwipeProcessor(this.manager, this.game, this.game);
+            this.manager.addProcessor(this.swipProcessor );   
     }
 
     init() {
         this.manager = new EntityManager()
-       // this.manager.addProcessor(new SwipeProcessor(this.manager, this.game));
     }
  
     private rect: Phaser.Rectangle;
@@ -64,13 +65,15 @@ class Game extends Phaser.State {
 
     this.rect = new Phaser.Rectangle(0, 0, 60, 60);
 
-     var game = this.game;
+
      this.base.events.onDragStart.add(
          function(sprite, pointer) { 
          this.rectVisible = true;   
+         this.swipProcessor.stopKineticScrolling();
          }, this);
 
      this.base.events.onDragStop.add(function(sprite, pointer) { 
+         this.swipProcessor.startKineticScrolling();
 
      },this);
 
@@ -87,6 +90,8 @@ class Game extends Phaser.State {
     //  30 is the frame rate (30fps)
     //  true means it will loop when it finishes
       this.base.animations.play('walk');   
+
+
     }
 
     update() {

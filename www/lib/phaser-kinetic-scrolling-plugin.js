@@ -21,6 +21,24 @@
     Phaser.Plugin.KineticScrolling = function (game, parent) {
         Phaser.Plugin.call(this, game, parent);
 
+        this.reset();
+
+        this.settings = {
+            kineticMovement: true,
+            timeConstantScroll: 325, //really mimic iOS
+            horizontalScroll: true,
+            verticalScroll: false,
+            horizontalWheel: true,
+            verticalWheel: false,
+            deltaWheel: 40
+        };
+    };
+
+    Phaser.Plugin.KineticScrolling.prototype = Object.create(Phaser.Plugin.prototype);
+    Phaser.Plugin.KineticScrolling.prototype.constructor = Phaser.Plugin.KineticScrolling;
+
+    Phaser.Plugin.KineticScrolling.prototype.reset = function ()
+    {
         this.dragging = false;
         this.pressedDown = false;
         this.timestamp = 0;
@@ -45,21 +63,8 @@
 
         this.velocityWheelX = 0;
         this.velocityWheelY = 0;
-
-        this.settings = {
-            kineticMovement: true,
-            timeConstantScroll: 325, //really mimic iOS
-            horizontalScroll: true,
-            verticalScroll: false,
-            horizontalWheel: true,
-            verticalWheel: false,
-            deltaWheel: 40
-        };
     };
-
-    Phaser.Plugin.KineticScrolling.prototype = Object.create(Phaser.Plugin.prototype);
-    Phaser.Plugin.KineticScrolling.prototype.constructor = Phaser.Plugin.KineticScrolling;
-
+    
     /**
     * Change Default Settings of the plugin
     *
@@ -91,6 +96,7 @@
     * @method Phaser.Plugin.KineticScrolling#start
     */
     Phaser.Plugin.KineticScrolling.prototype.start = function () {
+        this.reset();
 
         this.game.input.onDown.add(this.beginMove, this);
 
