@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationDataSet", "assemblages/buildings/base"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, Displayable, Position, DragDrop, Animation, AnimationDataSet, BaseAssemblag) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationDataSet", "assemblages/buildings/Base"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, Displayable, Position, DragDrop, Animation, AnimationDataSet, BaseAssemblag) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);

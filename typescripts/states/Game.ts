@@ -9,7 +9,7 @@ import Position = require("components/Position");
 import DragDrop = require("components/DragDrop");
 import Animation = require("components/Animation");
 import AnimationDataSet = require("components/AnimationDataSet");
-import BaseAssemblag = require("assemblages/buildings/base")
+import BaseAssemblag = require("assemblages/buildings/Base")
 
 class Game extends Phaser.State {
     private manager: EntityManager;
