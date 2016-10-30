@@ -10,14 +10,12 @@ class RenderingProcessor implements EntityManager.Processor {
     constructor(manager: EntityManager, game: Phaser.Game) {
         this.manager = manager;
         this.game = game;
-
-        this.update(null);
     }
 
     createSprite(entityId: number, displayableData: Component.DisplayableState) {
         var posData: Component.PositionState = this.manager.getComponentDataForEntity('Position', entityId);
         var anchorData: Component.AnchorState = null;
-        var spriteReference: Phaser.Sprite | Phaser.Rope;
+        var tempSprite: Phaser.Sprite | Phaser.Rope;
 
         if (this.manager.entityHasComponent(entityId, "Anchor")) {
             anchorData = this.manager.getComponentDataForEntity('Anchor', entityId);
@@ -53,11 +51,10 @@ class RenderingProcessor implements EntityManager.Processor {
                 }
             };
 
-            spriteReference = rope;
-
+            tempSprite = rope;
+            console.log("RenderingProcessor-RopeComponent[" + entityId + "," + displayableData.sprite + "]: INITIALZIED. ");
         }
-        else 
-        {
+        else {
 
             var sprite: Phaser.Sprite = this.game.add.sprite(posData.x, posData.y, displayableData.sprite);
 
@@ -66,11 +63,13 @@ class RenderingProcessor implements EntityManager.Processor {
                 sprite.anchor.y = anchorData.y;
             }
 
-            spriteReference = sprite;
+            tempSprite = sprite;
+            console.log("RenderingProcessor-SpriteComponent[" + entityId + "," + displayableData.sprite + "]: INITIALZIED. ");
 
         }
 
-         this.manager.updateComponentDataForEntity('Displayable', entityId, { spriteReference: spriteReference});
+        this.manager.updateComponentDataForEntity('Displayable', entityId, { spriteReference: tempSprite });
+        console.log(tempSprite)
     }
 
     update(deltaTime: number): void {
@@ -82,6 +81,7 @@ class RenderingProcessor implements EntityManager.Processor {
                 // plus sign means converting to number.
                 this.createSprite(+entityId, displayableData);
             }
+
         }
     }
 

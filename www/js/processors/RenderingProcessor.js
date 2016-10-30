@@ -4,12 +4,11 @@ define(["require", "exports"], function (require, exports) {
         function RenderingProcessor(manager, game) {
             this.manager = manager;
             this.game = game;
-            this.update(null);
         }
         RenderingProcessor.prototype.createSprite = function (entityId, displayableData) {
             var posData = this.manager.getComponentDataForEntity('Position', entityId);
             var anchorData = null;
-            var spriteReference;
+            var tempSprite;
             if (this.manager.entityHasComponent(entityId, "Anchor")) {
                 anchorData = this.manager.getComponentDataForEntity('Anchor', entityId);
             }
@@ -36,7 +35,8 @@ define(["require", "exports"], function (require, exports) {
                         this.points[i].y = Math.sin(i * 0.5 + count) * totalPoints;
                     }
                 };
-                spriteReference = rope;
+                tempSprite = rope;
+                console.log("RenderingProcessor-RopeComponent[" + entityId + "," + displayableData.sprite + "]: INITIALZIED. ");
             }
             else {
                 var sprite = this.game.add.sprite(posData.x, posData.y, displayableData.sprite);
@@ -44,9 +44,11 @@ define(["require", "exports"], function (require, exports) {
                     sprite.anchor.x = anchorData.x;
                     sprite.anchor.y = anchorData.y;
                 }
-                spriteReference = sprite;
+                tempSprite = sprite;
+                console.log("RenderingProcessor-SpriteComponent[" + entityId + "," + displayableData.sprite + "]: INITIALZIED. ");
             }
-            this.manager.updateComponentDataForEntity('Displayable', entityId, { spriteReference: spriteReference });
+            this.manager.updateComponentDataForEntity('Displayable', entityId, { spriteReference: tempSprite });
+            console.log(tempSprite);
         };
         RenderingProcessor.prototype.update = function (deltaTime) {
             var displayables = this.manager.getComponentsData('Displayable');

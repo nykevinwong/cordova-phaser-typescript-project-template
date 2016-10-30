@@ -181,6 +181,18 @@ define(function () {
     };
 
     /**
+     * Add components to the list of known components.
+     * @param {object} components - an array of Objects containing the metadata and data of the component.
+     * @return {object} - this
+     */
+    EntityManager.prototype.addComponents = function (components) {
+        for (var i = components.length - 1; i >= 0; i--) {
+            this.addComponent(components[i].name, components[i]);
+        } 
+        return this;
+    };
+
+    /**
      * Remove a component from the list of known components.
      *
      * @param {string} id - Unique identifier of the component.
@@ -404,6 +416,19 @@ define(function () {
      */
     EntityManager.prototype.addAssemblage = function (id, assemblage) {
         this.assemblages[id] = assemblage;
+        return this;
+    };
+
+    /**
+     * Add assemblages to the list of known assemblages.
+     *
+     * @param {object} assemblages - instances of assemblages to add.
+     * @return {object} - this
+     */
+    EntityManager.prototype.addAssemblages = function (assemblages) {
+                for (var i = assemblages.length - 1; i >= 0; i--) {
+                this.addAssemblage(assemblages[i].name, assemblages[i]);
+            }
         return this;
     };
 

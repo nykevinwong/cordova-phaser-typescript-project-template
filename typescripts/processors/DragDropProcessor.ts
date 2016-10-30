@@ -6,22 +6,32 @@ class DragDropProcessor implements EntityManager.Processor {
 
     private manager: EntityManager;
     private game: Phaser.Game;
+    private isDirty: boolean;
 
     constructor(manager: EntityManager, game: Phaser.Game) {
         this.manager = manager;
         this.game = game;
-        this.enableDrag();
+        this.isDirty = true;
     }
 
     enableDrag() {
-        var dragDrops = this.manager.getComponentsData('DragDrop');
-        var displayables = this.manager.getComponentsData('Displayable');
+        var dragDrops: Component.DragDropState[] = this.manager.getComponentsData('DragDrop');
+        var displayables: Component.DisplayableState[] = this.manager.getComponentsData('Displayable');
+        var entityCount: number = 0;
+        var initlizedCount: number = 0;
 
         for (var entityId in dragDrops) {
-            var displayableState: Component.DisplayableState = displayables[entityId];
             var dragDropState: Component.DragDropState = dragDrops[entityId];
+            entityCount++;
 
-            var sprite = displayableState.spriteReference;
+            if (dragDropState.initialized) {
+                initlizedCount++;
+                continue;
+            }
+
+            var displayableState: Component.DisplayableState = displayables[entityId];
+
+            var sprite: Phaser.Sprite = displayableState.spriteReference;
             if (sprite != null) {
                 if (dragDropState.enable) {
                     sprite.inputEnabled = true;
@@ -43,7 +53,7 @@ class DragDropProcessor implements EntityManager.Processor {
                                     if (typeof this.game.kineticScrolling != 'undefined') {
                                         this.game.kineticScrolling.stop();
                                     }
-                                    
+
                                 }, this);
 
                             sprite.events.onDragStop.add(function (sprite, pointer) {
@@ -54,18 +64,34 @@ class DragDropProcessor implements EntityManager.Processor {
                             }, this);
                         }
                     }
+
+                    this.manager.updateComponentDataForEntity('DragDrop', +entityId, { initialized: true });
                 }
+
+                console.log("DragDropProcessor-DragDropComponent[" + entityId + "," + displayableState.sprite + "]: INITIALZIED. ");
+                console.log(dragDropState);
+                initlizedCount++;
             }
             else {
-                console.log("DragDropPRocess:enableDrag() - spriteReference is not available - " + entityId);
+                console.log("DragDropProcessor-DragDropComponent[" + entityId + "]: displayableState sprite reference is NOT AVAIALBLE.");
+                console.log(dragDropState);
             }
 
+        }
+
+        if (entityCount === initlizedCount) {
+            this.isDirty = false;
+            console.log("ALL DragDropProcessor-DragDropComponents are INITIALIZED.")
         }
 
 
     }
 
     update(deltaTime: number): void {
+
+        if (this.isDirty) {
+            this.enableDrag();
+        }
     }
 }
 

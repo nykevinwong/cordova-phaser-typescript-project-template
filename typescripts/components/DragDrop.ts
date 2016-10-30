@@ -4,7 +4,8 @@ var DragDropComponent : Component.DragDropComponent = {
         name: 'DragDrop',
         state: {
             enable: true,
-            enableSnap: true,        
+            enableSnap: true,
+            initialized: false        
         }
 };
 

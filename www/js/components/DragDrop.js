@@ -5,6 +5,7 @@ define(["require", "exports"], function (require, exports) {
         state: {
             enable: true,
             enableSnap: true,
+            initialized: false
         }
     };
     return DragDropComponent;

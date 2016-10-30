@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "components/Displayable", "components/Position", "components/DragDrop"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, Displayable, Position, DragDrop) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationDataSet", "assemblages/buildings/base"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, Displayable, Position, DragDrop, Animation, AnimationDataSet, BaseAssemblag) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -15,46 +15,35 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
             this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
             this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
+            var baseJson = this.game.load.json('base', 'assets/buildings/json');
             this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
         };
         Game.prototype.init = function () {
             this.manager = new EntityManager();
-            var components = [Displayable, Position, DragDrop];
-            for (var i = components.length - 1; i >= 0; i--) {
-                this.manager.addComponent(components[i].name, components[i]);
-            }
+            var components = [Displayable, Position, DragDrop, Animation, AnimationDataSet];
+            this.manager.addComponents(components);
+            var assemblages = [BaseAssemblag];
+            this.manager.addAssemblages(assemblages);
         };
         Game.prototype.create = function () {
-            var map = this.game.add.tilemap('level1');
-            map.addTilesetImage('Grs2Crtr', 'tilesGrs2Crtr');
-            map.addTilesetImage('Grs2Watr', 'tilesGrs2Watr');
-            map.addTilesetImage('Grass', 'tilesGrass');
-            this.layer = map.createLayer('Tile Layer 1');
-            this.layer.resizeWorld();
-            var data = [
-                {
-                    components: ['Position', 'Displayable', 'DragDrop'],
-                    sprite: 'base',
-                    x: 300,
-                    y: 200
-                }
-            ];
-            for (var i = 0; i < data.length; i++) {
-                var d = data[i];
-                var entity = this.manager.createEntity(d.components);
-                this.manager.updateComponentDataForEntity('Displayable', entity, { sprite: d.sprite });
-                this.manager.updateComponentDataForEntity('Position', entity, { x: d.x, y: d.y });
-            }
-            this.swipProcessor = new SwipeProcessor(this.manager, this.game, this.game);
-            this.manager.addProcessor(this.swipProcessor);
+            var baseEntityId = this.manager.createEntityFromAssemblage('base');
+            this.manager.updateComponentDataForEntity('Position', baseEntityId, { x: 300, y: 400 });
+            var baseEntityId2 = this.manager.createEntityFromAssemblage('base');
+            this.manager.updateComponentDataForEntity('Position', baseEntityId2, { x: 400, y: 400 });
+            this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
+            this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
             this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
             this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));
+            this.manager.addProcessor(new AnimationProcessor(this.manager, this.game));
         };
         Game.prototype.update = function () {
             this.manager.update(this.game.time.elapsedMS);
         };
         Game.prototype.render = function () {
             this.game.debug.cameraInfo(this.game.camera, 32, 32);
+            var displayables = this.manager.getComponentsData('Displayable');
+            for (var entityId in displayables) {
+            }
         };
         return Game;
     }(Phaser.State));

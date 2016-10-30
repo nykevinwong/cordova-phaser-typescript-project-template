@@ -7,7 +7,7 @@ declare module EntityManager
 {
     interface Processor
     {
-        update(deltaTime: number): void;
+        update(deltaTime: number): void;     
     }
 
     interface Component
@@ -26,6 +26,7 @@ declare  class EntityManager {
     createEntity(componentIds: string[]): number;
     removeEntity(id:string): EntityManager;
     addComponent(id, component: EntityManager.Component): EntityManager; 
+    addComponents(components: EntityManager.Component[]): EntityManager; 
     removeComponent(id:string): EntityManager;
     getComponentsList():string[];
     addComponentsToEntity(componentIds: string[], entityId:number) : EntityManager;
@@ -35,6 +36,7 @@ declare  class EntityManager {
     getComponentsData(componentId:string) : any[]; 
     entityHasComponent(entityId:number, componentId:string): boolean;
     addAssemblage(id: string, assemblage: any): EntityManager;
+    addAssemblages(assemblage:any[]): EntityManager;
     removeAssemblage(id: string);
     createEntityFromAssemblage(assemblageId:string) : number;
     addProcessor(processor: EntityManager.Processor): EntityManager; 

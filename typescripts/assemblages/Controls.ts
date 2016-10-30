@@ -70,14 +70,8 @@ var controls = {
         ]
     };
 
-    interface Assemblages
-    {
-        name: string;
-        components: Component.ComponentType[];
-        initialState: any;
-    }
 
-    var assemblages: Assemblages[] = new Array();
+    var assemblages: Component.Assemblage[] = new Array();
 
     for (var p in controls) {
         var pControls = controls[p];
@@ -85,9 +79,10 @@ var controls = {
             var input = pControls[i];
             input.player = parseInt(p);
 
-            var assemblage:Assemblages = {
+            var assemblage:Component.Assemblage = {
                 name: 'Input_' + input.action + '_' + input.player,
                 components: ['Input'],
+                description: "",
                 initialState: {
                     'Input': input
                 }

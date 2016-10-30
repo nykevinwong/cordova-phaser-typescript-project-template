@@ -75,6 +75,7 @@ define(["require", "exports", "settings/Constants"], function (require, exports,
             var assemblage = {
                 name: 'Input_' + input.action + '_' + input.player,
                 components: ['Input'],
+                description: "",
                 initialState: {
                     'Input': input
                 }

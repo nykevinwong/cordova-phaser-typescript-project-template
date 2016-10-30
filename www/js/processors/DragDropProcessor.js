@@ -4,14 +4,21 @@ define(["require", "exports"], function (require, exports) {
         function DragDropProcessor(manager, game) {
             this.manager = manager;
             this.game = game;
-            this.enableDrag();
+            this.isDirty = true;
         }
         DragDropProcessor.prototype.enableDrag = function () {
             var dragDrops = this.manager.getComponentsData('DragDrop');
             var displayables = this.manager.getComponentsData('Displayable');
+            var entityCount = 0;
+            var initlizedCount = 0;
             for (var entityId in dragDrops) {
-                var displayableState = displayables[entityId];
                 var dragDropState = dragDrops[entityId];
+                entityCount++;
+                if (dragDropState.initialized) {
+                    initlizedCount++;
+                    continue;
+                }
+                var displayableState = displayables[entityId];
                 var sprite = displayableState.spriteReference;
                 if (sprite != null) {
                     if (dragDropState.enable) {
@@ -36,14 +43,26 @@ define(["require", "exports"], function (require, exports) {
                                 }, this);
                             }
                         }
+                        this.manager.updateComponentDataForEntity('DragDrop', +entityId, { initialized: true });
                     }
+                    console.log("DragDropProcessor-DragDropComponent[" + entityId + "," + displayableState.sprite + "]: INITIALZIED. ");
+                    console.log(dragDropState);
+                    initlizedCount++;
                 }
                 else {
-                    console.log("DragDropPRocess:enableDrag() - spriteReference is not available - " + entityId);
+                    console.log("DragDropProcessor-DragDropComponent[" + entityId + "]: displayableState sprite reference is NOT AVAIALBLE.");
+                    console.log(dragDropState);
                 }
+            }
+            if (entityCount === initlizedCount) {
+                this.isDirty = false;
+                console.log("ALL DragDropProcessor-DragDropComponents are INITIALIZED.");
             }
         };
         DragDropProcessor.prototype.update = function (deltaTime) {
+            if (this.isDirty) {
+                this.enableDrag();
+            }
         };
         return DragDropProcessor;
     }());
