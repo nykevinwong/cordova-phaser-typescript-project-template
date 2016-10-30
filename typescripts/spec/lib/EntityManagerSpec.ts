@@ -6,7 +6,7 @@ import Position = require("components/Position");
 import DragDrop = require("components/DragDrop");
 import RenderingProcessor = require("processors/RenderingProcessor");
 
-function EntityManagerSpec() {
+var EntityManagerSpec = (function () {
 
   describe("EntityManager", function () {
     var manager: EntityManager;
@@ -57,6 +57,7 @@ function EntityManagerSpec() {
 
   });
 
-}
+});
 
 export = EntityManagerSpec;
+

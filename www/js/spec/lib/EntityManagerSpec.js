@@ -1,6 +1,6 @@
 define(["require", "exports", "components/EntityManager", "components/Displayable", "components/Position", "components/DragDrop"], function (require, exports, EntityManager, Displayable, Position, DragDrop) {
     "use strict";
-    function EntityManagerSpec() {
+    var EntityManagerSpec = (function () {
         describe("EntityManager", function () {
             var manager;
             beforeEach(function () {
@@ -30,6 +30,6 @@ define(["require", "exports", "components/EntityManager", "components/Displayabl
                 expect(displayble.spriteReference).toBe(b);
             });
         });
-    }
+    });
     return EntityManagerSpec;
 });
