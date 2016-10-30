@@ -1,6 +1,7 @@
 # cordova-phaser-typescript-project-template
 
 [demo link](https://nykevinwong.github.io/cordova-phaser-typescript-project-template/www/)
+[run unit testing](https://nykevinwong.github.io/cordova-phaser-typescript-project-template/www/SpecRunner.html)
 
 #Prerequisite
 Apache Cordova
