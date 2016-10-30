@@ -1,5 +1,10 @@
 import EntityManager=  require("components/EntityManager");
 import SwipeProcessor = require("processors/SwipeProcessor");
+import DragDropProcessor = require("processors/DragDropProcessor");
+import RenderingProcessor = require("processors/RenderingProcessor");
+import Displayable = require("components/Displayable");
+import Position =  require("components/Position");
+import DragDrop =  require("components/DragDrop");
 
 class Game extends Phaser.State {
     private cursors: Phaser.CursorKeys;
@@ -20,16 +25,20 @@ class Game extends Phaser.State {
             this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
             this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');      
             this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
-            this.swipProcessor = new SwipeProcessor(this.manager, this.game, this.game);
-            this.manager.addProcessor(this.swipProcessor );   
     }
 
     init() {
         this.manager = new EntityManager()
+
+                // set up entity manager with creatable component list.
+        var components = [Displayable, Position, DragDrop];
+        for (var i = components.length - 1; i >= 0; i--) {
+                this.manager.addComponent(components[i].name, components[i]);
+        }
+
+ 
     }
  
-    private rect: Phaser.Rectangle;
-    private rectVisible: boolean = false;
     private base: Phaser.Sprite;
 
     create() {
@@ -51,7 +60,7 @@ class Game extends Phaser.State {
         //  This resizes the game world to match the layer dimensions
         this.layer.resizeWorld();
 
-
+/*
      this.base = this.game.add.sprite(300, 200, 'base');
 
      this.base.inputEnabled = true;
@@ -63,23 +72,20 @@ class Game extends Phaser.State {
     var offestY = this.game.camera.y % 20;
      this.base.input.enableSnap(20, 20, true, true, offestX, offestY);
 
-    this.rect = new Phaser.Rectangle(0, 0, 60, 60);
-
-
      this.base.events.onDragStart.add(
          function(sprite, pointer) { 
-         this.rectVisible = true;   
          this.swipProcessor.stopKineticScrolling();
-         }, this);
+         sprite.tint = 0x00ffff;
+         },this);
 
      this.base.events.onDragStop.add(function(sprite, pointer) { 
          this.swipProcessor.startKineticScrolling();
-
      },this);
 
+
      this.game.input.onDown.add(function() {
-         this.rectVisible = false; 
-     } , this);
+         this.sprite.tint = 0xffffff; // remove the tint effect
+     } , { state: this, sprite: this.base } );
 
     //  Here we add a new animation called 'walk'
     //  Because we didn't give any other parameters it's going to make an animation from all available frames in the 'mummy' sprite sheet
@@ -90,8 +96,31 @@ class Game extends Phaser.State {
     //  30 is the frame rate (30fps)
     //  true means it will loop when it finishes
       this.base.animations.play('walk');   
+*/
 
 
+           var data = [
+                {
+                    components: ['Position', 'Displayable','DragDrop'],
+                    sprite: 'base',
+                    x: 300,
+                    y: 200
+                }
+                ];
+
+            for (var i = 0; i < data.length; i++) {
+                var d = data[i];
+                var entity = this.manager.createEntity(d.components);
+                this.manager.updateComponentDataForEntity('Displayable', entity, {sprite: d.sprite});
+                this.manager.updateComponentDataForEntity('Position', entity, {x: d.x, y: d.y});
+            }
+
+
+        this.swipProcessor = new SwipeProcessor(this.manager, this.game, this.game);
+        this.manager.addProcessor(this.swipProcessor);   
+        this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));   
+        this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));   
+        
     }
 
     update() {
@@ -100,14 +129,9 @@ class Game extends Phaser.State {
 
     render() {
 
-        this.rect.x = this.base.x;
-        this.rect.y = this.base.y;
-        
-        if(this.rectVisible == true)
-        this.game.debug.geom(this.rect, '#00ff00', false);
 
         this.game.debug.cameraInfo(this.game.camera, 32, 32);
-        this.game.debug.spriteInfo(this.base, 400, 32);
+       // this.game.debug.spriteInfo(this.base, 400, 32);
     }
 }
 

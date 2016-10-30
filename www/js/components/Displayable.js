@@ -6,6 +6,7 @@ define(["require", "exports"], function (require, exports) {
             sprite: '',
             deleted: false,
             scaleX: 1,
+            spriteReference: null
         }
     };
     return DisplayableComponent;

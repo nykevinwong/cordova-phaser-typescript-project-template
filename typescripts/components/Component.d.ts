@@ -8,6 +8,7 @@ class DisplayableState {
     sprite: string;
     deleted: boolean;
     scaleX: number;
+    spriteReference: any;
 }
 
 class DisplayableComponent implements EntityManager.Component {
@@ -66,6 +67,16 @@ class InputState {
 class InputComponent implements EntityManager.Component  {
     name: string;
     state: InputState;
+}
+
+class DragDropState {
+    enable: boolean;
+    enableSnap: boolean;
+}
+
+class DragDropComponent implements EntityManager.Component  {
+    name: string;
+    state: DragDropState;
 }
 
 }

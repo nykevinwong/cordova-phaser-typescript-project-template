@@ -3,13 +3,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor"], function (require, exports, EntityManager, SwipeProcessor) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "components/Displayable", "components/Position", "components/DragDrop"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, Displayable, Position, DragDrop) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
         function Game() {
             _super.call(this);
-            this.rectVisible = false;
         }
         Game.prototype.preload = function () {
             this.game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
@@ -17,11 +16,13 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
             this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
             this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
-            this.swipProcessor = new SwipeProcessor(this.manager, this.game, this.game);
-            this.manager.addProcessor(this.swipProcessor);
         };
         Game.prototype.init = function () {
             this.manager = new EntityManager();
+            var components = [Displayable, Position, DragDrop];
+            for (var i = components.length - 1; i >= 0; i--) {
+                this.manager.addComponent(components[i].name, components[i]);
+            }
         };
         Game.prototype.create = function () {
             var map = this.game.add.tilemap('level1');
@@ -30,36 +31,30 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             map.addTilesetImage('Grass', 'tilesGrass');
             this.layer = map.createLayer('Tile Layer 1');
             this.layer.resizeWorld();
-            this.base = this.game.add.sprite(300, 200, 'base');
-            this.base.inputEnabled = true;
-            this.base.input.enableDrag();
-            var offestX = this.game.camera.x % 20;
-            var offestY = this.game.camera.y % 20;
-            this.base.input.enableSnap(20, 20, true, true, offestX, offestY);
-            this.rect = new Phaser.Rectangle(0, 0, 60, 60);
-            this.base.events.onDragStart.add(function (sprite, pointer) {
-                this.rectVisible = true;
-                this.swipProcessor.stopKineticScrolling();
-            }, this);
-            this.base.events.onDragStop.add(function (sprite, pointer) {
-                this.swipProcessor.startKineticScrolling();
-            }, this);
-            this.game.input.onDown.add(function () {
-                this.rectVisible = false;
-            }, this);
-            this.base.animations.add('walk', [0, 1, 2, 3], 10, true);
-            this.base.animations.play('walk');
+            var data = [
+                {
+                    components: ['Position', 'Displayable', 'DragDrop'],
+                    sprite: 'base',
+                    x: 300,
+                    y: 200
+                }
+            ];
+            for (var i = 0; i < data.length; i++) {
+                var d = data[i];
+                var entity = this.manager.createEntity(d.components);
+                this.manager.updateComponentDataForEntity('Displayable', entity, { sprite: d.sprite });
+                this.manager.updateComponentDataForEntity('Position', entity, { x: d.x, y: d.y });
+            }
+            this.swipProcessor = new SwipeProcessor(this.manager, this.game, this.game);
+            this.manager.addProcessor(this.swipProcessor);
+            this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
+            this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));
         };
         Game.prototype.update = function () {
             this.manager.update(this.game.time.elapsedMS);
         };
         Game.prototype.render = function () {
-            this.rect.x = this.base.x;
-            this.rect.y = this.base.y;
-            if (this.rectVisible == true)
-                this.game.debug.geom(this.rect, '#00ff00', false);
             this.game.debug.cameraInfo(this.game.camera, 32, 32);
-            this.game.debug.spriteInfo(this.base, 400, 32);
         };
         return Game;
     }(Phaser.State));

@@ -6,6 +6,7 @@ var DisplayableComponent : Component.DisplayableComponent = {
         sprite: '',
         deleted: false,
         scaleX: 1,
+        spriteReference: null
     }  
 };
 

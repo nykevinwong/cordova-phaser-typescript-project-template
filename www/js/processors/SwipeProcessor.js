@@ -4,8 +4,8 @@ define(["require", "exports"], function (require, exports) {
         function SwipeProcessor(manager, game, target) {
             this.manager = manager;
             this.game = game;
-            this.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
-            this.kineticScrolling.configure({
+            this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
+            this.game.kineticScrolling.configure({
                 kineticMovement: false,
                 timeConstantScroll: 325,
                 horizontalScroll: true,
@@ -18,10 +18,10 @@ define(["require", "exports"], function (require, exports) {
             this.startKineticScrolling();
         }
         SwipeProcessor.prototype.startKineticScrolling = function () {
-            this.kineticScrolling.start();
+            this.game.kineticScrolling.start();
         };
         SwipeProcessor.prototype.stopKineticScrolling = function () {
-            this.kineticScrolling.stop();
+            this.game.kineticScrolling.stop();
         };
         SwipeProcessor.prototype.update = function (deltaTime) {
         };
