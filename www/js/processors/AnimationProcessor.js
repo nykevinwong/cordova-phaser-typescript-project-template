@@ -33,7 +33,8 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
                 }
             }
             if (count == animationLoaded) {
-                console.log("ALL AnimationProcessor-AnimationSet are INTIALIZED.), this.isDirty = false);
+                console.log("ALL AnimationProcessor-AnimationSet are INTIALIZED.");
+                this.isDirty = false;
             }
         };
         AnimationProcessor.prototype.createAnimation = function () {

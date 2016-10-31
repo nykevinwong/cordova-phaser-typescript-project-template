@@ -54,7 +54,7 @@ class AnimationProcessor implements EntityManager.Processor {
 
         if(count == animationLoaded)
         {
-            console.log("ALL AnimationProcessor-AnimationSet are INTIALIZED.)
+            console.log("ALL AnimationProcessor-AnimationSet are INTIALIZED.");
             this.isDirty = false;
         }
 
