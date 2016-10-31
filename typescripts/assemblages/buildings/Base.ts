@@ -10,7 +10,7 @@ var assemblage: Component.Assemblage =
         'Position',
         'DragDrop',
         'Animation',
-        'AnimationDataSet'
+        'AnimationSet'
     ],
     initialState: {
         Displayable: {
@@ -20,7 +20,7 @@ var assemblage: Component.Assemblage =
             x: 300,
             y: 200
         },
-        AnimationDataSet: {
+        AnimationSet: {
             setName: 'base'
         }
     }

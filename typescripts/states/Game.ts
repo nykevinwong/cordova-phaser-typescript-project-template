@@ -8,7 +8,7 @@ import Displayable = require("components/Displayable");
 import Position = require("components/Position");
 import DragDrop = require("components/DragDrop");
 import Animation = require("components/Animation");
-import AnimationDataSet = require("components/AnimationDataSet");
+import AnimationSet = require("components/AnimationSet");
 import BaseAssemblag = require("assemblages/buildings/Base")
 
 class Game extends Phaser.State {
@@ -23,7 +23,7 @@ class Game extends Phaser.State {
         this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
         this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
         this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
-        var baseJson = this.game.load.json('base', 'assets/buildings/json');
+        var json = this.game.load.json('baseJson', 'assets/buildings/base.json', true);
 
         this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
     }
@@ -32,7 +32,7 @@ class Game extends Phaser.State {
         this.manager = new EntityManager()
 
         // set up entity manager with creatable component list.
-        var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationDataSet];
+        var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet];
         this.manager.addComponents(components);
 
         var assemblages = [BaseAssemblag];

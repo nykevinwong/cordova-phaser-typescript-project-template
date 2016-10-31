@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationDataSet", "assemblages/buildings/Base"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, Displayable, Position, DragDrop, Animation, AnimationDataSet, BaseAssemblag) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "assemblages/buildings/Base"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, BaseAssemblag) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -15,12 +15,12 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
             this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
             this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
-            var baseJson = this.game.load.json('base', 'assets/buildings/json');
+            var json = this.game.load.json('baseJson', 'assets/buildings/base.json', true);
             this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
         };
         Game.prototype.init = function () {
             this.manager = new EntityManager();
-            var components = [Displayable, Position, DragDrop, Animation, AnimationDataSet];
+            var components = [Displayable, Position, DragDrop, Animation, AnimationSet];
             this.manager.addComponents(components);
             var assemblages = [BaseAssemblag];
             this.manager.addAssemblages(assemblages);

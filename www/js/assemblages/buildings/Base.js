@@ -8,7 +8,7 @@ define(["require", "exports"], function (require, exports) {
             'Position',
             'DragDrop',
             'Animation',
-            'AnimationDataSet'
+            'AnimationSet'
         ],
         initialState: {
             Displayable: {
@@ -18,7 +18,7 @@ define(["require", "exports"], function (require, exports) {
                 x: 300,
                 y: 200
             },
-            AnimationDataSet: {
+            AnimationSet: {
                 setName: 'base'
             }
         }
