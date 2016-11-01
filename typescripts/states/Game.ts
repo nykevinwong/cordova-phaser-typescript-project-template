@@ -10,7 +10,8 @@ import DragDrop = require("components/DragDrop");
 import Animation = require("components/Animation");
 import AnimationSet = require("components/AnimationSet");
 import BaseAssemblage = require("assemblages/buildings/Base")
-import StarPortAssemblage = require("assemblages/buildings/StarPort")
+import StarPortAssemblage = require("assemblages/buildings/Starport")
+import HarvesterAssemblage = require("assemblages/buildings/Harvester")
 
 class Game extends Phaser.State {
     private manager: EntityManager;
@@ -28,6 +29,7 @@ class Game extends Phaser.State {
 
         this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
         this.game.load.spritesheet('starport', 'assets/gfx/buildings/starport.png', 40, 60);
+        this.game.load.spritesheet('harvester', 'assets/gfx/buildings/harvester.png', 40, 60);
     }
 
     init() {
@@ -37,7 +39,8 @@ class Game extends Phaser.State {
         var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet];
         this.manager.addComponents(components);
 
-        var assemblages = [BaseAssemblage,StarPortAssemblage];
+        // assemblages is a pre-setup template used to create game entities.
+        var assemblages = [BaseAssemblage, StarPortAssemblage , HarvesterAssemblage];
         this.manager.addAssemblages(assemblages);
 
     }
@@ -54,8 +57,11 @@ class Game extends Phaser.State {
         var baseEntityId2 = this.manager.createEntityFromAssemblage('base');
         this.manager.updateComponentDataForEntity('Position', baseEntityId2, { x: 400, y: 400 });
 
-        var baseEntityId2 = this.manager.createEntityFromAssemblage('starport');
-        this.manager.updateComponentDataForEntity('Position', baseEntityId2, { x: 400, y: 200 });
+        var baseEntityId3 = this.manager.createEntityFromAssemblage('starport');
+        this.manager.updateComponentDataForEntity('Position', baseEntityId3, { x: 360, y: 200 });
+
+        var baseEntityId4 = this.manager.createEntityFromAssemblage('harvester');
+        this.manager.updateComponentDataForEntity('Position', baseEntityId4, { x: 460, y: 200 });
 
         this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
         this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));

@@ -94,9 +94,49 @@ var GameStaticData =
 
             ],
             "defaultAnimation": "healthy"
-        }
-    ];
+        },
+        {
+		    name:"harvester",
+		    pixelWidth:40,
+		    pixelHeight:60,
+		    baseWidth:40,
+		    baseHeight:20,
+		    pixelOffsetX:-2,
+		    pixelOffsetY:40,
+		    buildableGrid:[
+		        [1,1]
+		    ],
+		    passableGrid:[
+		        [1,1]
+		    ],
+		    sight:3,
+		    cost:5000,
+		    hitPoints:300,
+            "type": "building",
+            "animations": [
+                {
+                    "name": "deploy",
+                    "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "healthy",
+                    "frames": [17,18,19],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "damaged",
+                    "frames": [20],
+                    "loop": false,
+                    "framePerSecond": 10
+                }
 
+            ],
+            "defaultAnimation": "healthy"
+		}
+    ];
 
 function LoadGameData(key: string) {
     for (var i = 0; i < GameStaticData.length; i++) {

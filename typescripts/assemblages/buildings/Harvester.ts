@@ -3,8 +3,8 @@
 
 var assemblage: Component.Assemblage = 
 {
-    name: "starport",
-    description: "Starport produces aircrafit or vehicle. ",
+    name: "harvester",
+    description: "Harvester building produces gold.",
     components: [
         'Displayable',
         'Position',
@@ -14,14 +14,14 @@ var assemblage: Component.Assemblage =
     ],
     initialState: {
         Displayable: {
-            sprite: 'starport'
+            sprite: 'harvester'
         },
         Position: {
             x: 300,
             y: 200
         },
         AnimationSet: {
-            setName: 'starport'
+            setName: 'harvester'
         }
     }
 };

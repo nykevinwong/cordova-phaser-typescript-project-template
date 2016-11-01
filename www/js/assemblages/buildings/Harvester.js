@@ -1,8 +1,8 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
     var assemblage = {
-        name: "starport",
-        description: "Starport produces aircrafit or vehicle. ",
+        name: "harvester",
+        description: "Harvester building produces gold.",
         components: [
             'Displayable',
             'Position',
@@ -12,14 +12,14 @@ define(["require", "exports"], function (require, exports) {
         ],
         initialState: {
             Displayable: {
-                sprite: 'starport'
+                sprite: 'harvester'
             },
             Position: {
                 x: 300,
                 y: 200
             },
             AnimationSet: {
-                setName: 'starport'
+                setName: 'harvester'
             }
         }
     };
