@@ -9,7 +9,8 @@ import Position = require("components/Position");
 import DragDrop = require("components/DragDrop");
 import Animation = require("components/Animation");
 import AnimationSet = require("components/AnimationSet");
-import BaseAssemblag = require("assemblages/buildings/Base")
+import BaseAssemblage = require("assemblages/buildings/Base")
+import StarPortAssemblage = require("assemblages/buildings/StarPort")
 
 class Game extends Phaser.State {
     private manager: EntityManager;
@@ -23,9 +24,10 @@ class Game extends Phaser.State {
         this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
         this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
         this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
-        var json = this.game.load.json('baseJson', 'assets/buildings/base.json', true);
+//        var json = this.game.load.json('baseJson', 'assets/buildings/base.json', true);
 
         this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
+        this.game.load.spritesheet('starport', 'assets/gfx/buildings/starport.png', 40, 60);
     }
 
     init() {
@@ -35,7 +37,7 @@ class Game extends Phaser.State {
         var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet];
         this.manager.addComponents(components);
 
-        var assemblages = [BaseAssemblag];
+        var assemblages = [BaseAssemblage,StarPortAssemblage];
         this.manager.addAssemblages(assemblages);
 
     }
@@ -45,50 +47,15 @@ class Game extends Phaser.State {
     create() {
 
 
-        /*
-             this.base = this.game.add.sprite(300, 200, 'base');
-        
-             this.base.inputEnabled = true;
-             this.base.input.enableDrag();
-        
-            //  Enable snapping. For the atari1 sprite it will snap as its dragged around and on release.
-            //  The snap is set to every 32x32 pixels.
-            var offestX = this.game.camera.x % 20;
-            var offestY = this.game.camera.y % 20;
-             this.base.input.enableSnap(20, 20, true, true, offestX, offestY);
-        
-             this.base.events.onDragStart.add(
-                 function(sprite, pointer) { 
-                 this.swipProcessor.stopKineticScrolling();
-                 sprite.tint = 0x00ffff;
-                 },this);
-        
-             this.base.events.onDragStop.add(function(sprite, pointer) { 
-                 this.swipProcessor.startKineticScrolling();
-             },this);
-        
-        
-             this.game.input.onDown.add(function() {
-                 this.sprite.tint = 0xffffff; // remove the tint effect
-             } , { state: this, sprite: this.base } );
-        
-            //  Here we add a new animation called 'walk'
-            //  Because we didn't give any other parameters it's going to make an animation from all available frames in the 'mummy' sprite sheet
-            this.base.animations.add('walk',[0,1,2,3],10, true);
-            //this.base.animations.add('damaged',[4],10, true);
-        
-            //  And this starts the animation playing by using its key ("walk")
-            //  30 is the frame rate (30fps)
-            //  true means it will loop when it finishes
-              this.base.animations.play('walk');   
-        */
-
 
         var baseEntityId = this.manager.createEntityFromAssemblage('base');
         this.manager.updateComponentDataForEntity('Position', baseEntityId, { x: 300, y: 400 });
 
         var baseEntityId2 = this.manager.createEntityFromAssemblage('base');
         this.manager.updateComponentDataForEntity('Position', baseEntityId2, { x: 400, y: 400 });
+
+        var baseEntityId2 = this.manager.createEntityFromAssemblage('starport');
+        this.manager.updateComponentDataForEntity('Position', baseEntityId2, { x: 400, y: 200 });
 
         this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
         this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
