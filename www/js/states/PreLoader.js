@@ -26,6 +26,13 @@ define(["require", "exports", "../GlobalEntityManager", "processors/InputProcess
             this.game.load.image('gameTitle', 'assets/gfx/title/gametitle.png');
             this.game.load.image('start', 'assets/gfx/title/start.png');
             this.game.load.image('continue', 'assets/gfx/title/continue.png');
+            this.game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
+            this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
+            this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
+            this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
+            this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
+            this.game.load.spritesheet('starport', 'assets/gfx/buildings/starport.png', 40, 60);
+            this.game.load.spritesheet('harvester', 'assets/gfx/buildings/harvester.png', 40, 60);
         };
         PreLoader.prototype.create = function () {
             this.add.tween(this.background)

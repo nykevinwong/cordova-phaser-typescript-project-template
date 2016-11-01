@@ -21,15 +21,6 @@ class Game extends Phaser.State {
     }
 
     preload() {
-        this.game.load.tilemap('level1', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
-        this.game.load.image('tilesGrs2Crtr', 'assets/tilesets/Grs2Crtr.png');
-        this.game.load.image('tilesGrs2Watr', 'assets/tilesets/Grs2Watr.png');
-        this.game.load.image('tilesGrass', 'assets/tilesets/Grass.png');
-//        var json = this.game.load.json('baseJson', 'assets/buildings/base.json', true);
-
-        this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
-        this.game.load.spritesheet('starport', 'assets/gfx/buildings/starport.png', 40, 60);
-        this.game.load.spritesheet('harvester', 'assets/gfx/buildings/harvester.png', 40, 60);
     }
 
     init() {
