@@ -10,7 +10,7 @@ import DragDrop = require("components/DragDrop");
 import Animation = require("components/Animation");
 import AnimationSet = require("components/AnimationSet");
 import BaseAssemblage = require("assemblages/buildings/Base")
-import StarPortAssemblage = require("assemblages/buildings/Starport")
+import StarPortAssemblage = require("assemblages/buildings/StarPort")
 import HarvesterAssemblage = require("assemblages/buildings/Harvester")
 
 class Game extends Phaser.State {

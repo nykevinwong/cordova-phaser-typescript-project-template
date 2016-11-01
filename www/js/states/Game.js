@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "assemblages/buildings/Base", "assemblages/buildings/Starport", "assemblages/buildings/Harvester"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
