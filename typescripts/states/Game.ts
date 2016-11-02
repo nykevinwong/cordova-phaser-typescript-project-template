@@ -56,7 +56,7 @@ class Game extends Phaser.State {
         var baseEntityId4 = this.manager.createEntityFromAssemblage('harvester');
         this.manager.updateComponentDataForEntity('Position', baseEntityId4, { x: 460, y: 200 });
 
- //       this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
+        this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
         this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
         this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
         this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));

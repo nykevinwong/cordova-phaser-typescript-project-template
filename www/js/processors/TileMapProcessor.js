@@ -13,6 +13,8 @@ define(["require", "exports"], function (require, exports) {
             map.addTilesetImage('Grass', 'tilesGrass');
             var layer = map.createLayer('Tile Layer 1');
             layer.resizeWorld();
+            var group = this.game.add.group();
+            group.add(layer);
             console.log("TiledMap created.");
             this.isDirty = false;
         };

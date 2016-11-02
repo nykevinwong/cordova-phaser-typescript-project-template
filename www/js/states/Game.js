@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, AnimationProcessor, GroupProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -28,6 +28,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.manager.updateComponentDataForEntity('Position', baseEntityId3, { x: 360, y: 200 });
             var baseEntityId4 = this.manager.createEntityFromAssemblage('harvester');
             this.manager.updateComponentDataForEntity('Position', baseEntityId4, { x: 460, y: 200 });
+            this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
             this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
             this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
             this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));

@@ -31,8 +31,15 @@ class TileMapProcessor implements EntityManager.Processor {
         //  This resizes the game world to match the layer dimensions
         layer.resizeWorld();
 
+        //make sure the tiled map is the first thing to render
+        var group = this.game.add.group();
+        group.add(layer);
+
         console.log("TiledMap created.");
+
+
         this.isDirty = false;
+
     }
 
     update(deltaTime: number): void {
