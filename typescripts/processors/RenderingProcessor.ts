@@ -6,7 +6,7 @@ class RenderingProcessor implements EntityManager.Processor {
 
     private manager: EntityManager;
     private game: Phaser.Game;
-
+    
     constructor(manager: EntityManager, game: Phaser.Game) {
         this.manager = manager;
         this.game = game;
@@ -40,7 +40,7 @@ class RenderingProcessor implements EntityManager.Processor {
                 x = x - image.width * anchorData.x;
                 y = y - image.height * anchorData.y;
             }
-
+    
             var rope: Phaser.Rope = this.game.add.rope(x, y, displayableData.sprite, null, points);
 
             rope.updateAnimation = function () {
@@ -83,6 +83,7 @@ class RenderingProcessor implements EntityManager.Processor {
             }
 
         }
+
     }
 
 }
