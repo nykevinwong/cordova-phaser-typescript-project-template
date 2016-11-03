@@ -3,7 +3,7 @@ define(["require", "exports", "states/Boot", "states/PreLoader", "states/Title",
     var PhaserGameApp = (function () {
         function PhaserGameApp(app) {
             var screenDims = Utils.ScreenUtils.calculateScreenMetrics(800, 500, Utils.Orientation.LANDSCAPE);
-            this.game = new Phaser.Game(screenDims.gameWidth, screenDims.gameHeight, Phaser.Phaser.CANVAS, 'content', { init: this.init, create: this.create });
+            this.game = new Phaser.Game(screenDims.gameWidth, screenDims.gameHeight, Phaser.CANVAS, 'content', { init: this.init, create: this.create });
             this.app = app;
         }
         PhaserGameApp.prototype.init = function () {
