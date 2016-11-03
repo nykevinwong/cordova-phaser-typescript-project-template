@@ -5,12 +5,16 @@ import RenderingProcessor = require("processors/RenderingProcessor");
 import TileMapProcessor = require("processors/TileMapProcessor");
 import AnimationProcessor = require("processors/AnimationProcessor");
 import GroupProcessor = require("processors/GroupProcessor");
+import SelectableProcessor = require("processors/SelectableProcessor");
+
 import Displayable = require("components/Displayable");
 import Position = require("components/Position");
 import DragDrop = require("components/DragDrop");
 import Animation = require("components/Animation");
 import AnimationSet = require("components/AnimationSet");
 import Group = require("components/Group");
+import Selectable = require("components/Selectable");
+
 import BaseAssemblage = require("assemblages/buildings/Base")
 import StarPortAssemblage = require("assemblages/buildings/StarPort")
 import HarvesterAssemblage = require("assemblages/buildings/Harvester")
@@ -28,8 +32,9 @@ class Game extends Phaser.State {
     init() {
         this.manager = new EntityManager()
 
+        this.game.time.advancedTiming = true; // enable FPS
         // set up entity manager with creatable component list.
-        var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet, Group];
+        var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable];
         this.manager.addComponents(components);
 
         // assemblages is a pre-setup template used to create game entities.
@@ -62,6 +67,8 @@ class Game extends Phaser.State {
         this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));
         this.manager.addProcessor(new AnimationProcessor(this.manager, this.game));
         this.manager.addProcessor(new GroupProcessor(this.manager, this.game));
+        this.manager.addProcessor(new SelectableProcessor(this.manager, this.game));
+
         
 
     }
@@ -74,6 +81,7 @@ class Game extends Phaser.State {
 
 
         this.game.debug.cameraInfo(this.game.camera, 32, 32);
+        this.game.debug.text('FPS: ' + (this.game.time.fps || '--'), 400, 32, "#00ff00"); 
 
          var displayables = this.manager.getComponentsData('Displayable');
         for (var entityId in displayables) {

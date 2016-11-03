@@ -9,7 +9,8 @@ define(["require", "exports"], function (require, exports) {
             'DragDrop',
             'Animation',
             'AnimationSet',
-            'Group'
+            'Group',
+            'Selectable'
         ],
         initialState: {
             Displayable: {

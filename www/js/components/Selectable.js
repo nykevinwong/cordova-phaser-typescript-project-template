@@ -1,10 +1,9 @@
 define(["require", "exports"], function (require, exports) {
     "use strict";
     var SelectableComponent = {
-        name: 'Anchor',
+        name: 'Selectable',
         state: {
-            x: 0.5,
-            y: 0.5
+            selected: false
         }
     };
     return SelectableComponent;

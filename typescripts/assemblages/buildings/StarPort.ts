@@ -11,7 +11,8 @@ var assemblage: Component.Assemblage =
         'DragDrop',
         'Animation',
         'AnimationSet',
-        'Group'
+        'Group',
+        'Selectable'        
     ],
     initialState: {
         Displayable: {
