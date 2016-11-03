@@ -12,6 +12,7 @@ class GroupProcessor implements EntityManager.Processor {
         this.manager = manager;
         this.game = game;
         this.isDirty = true;
+        
     }
 
     createGroups() {

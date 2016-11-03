@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -15,7 +15,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
         Game.prototype.init = function () {
             this.manager = new EntityManager();
             this.game.time.advancedTiming = true;
-            var components = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable];
+            var components = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type];
             this.manager.addComponents(components);
             var assemblages = [BaseAssemblage, StarPortAssemblage, HarvesterAssemblage];
             this.manager.addAssemblages(assemblages);

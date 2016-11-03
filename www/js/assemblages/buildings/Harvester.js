@@ -2,7 +2,7 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     var assemblage = {
         name: "harvester",
-        description: "Harvester building produces gold.",
+        description: "Harvester buildings produce gold.",
         components: [
             'Displayable',
             'Position',
@@ -10,7 +10,8 @@ define(["require", "exports"], function (require, exports) {
             'Animation',
             'AnimationSet',
             'Group',
-            'Selectable'
+            'Selectable',
+            "Type"
         ],
         initialState: {
             Displayable: {
@@ -22,6 +23,9 @@ define(["require", "exports"], function (require, exports) {
             },
             AnimationSet: {
                 setName: 'harvester'
+            },
+            Type: {
+                type: "harvester"
             }
         }
     };

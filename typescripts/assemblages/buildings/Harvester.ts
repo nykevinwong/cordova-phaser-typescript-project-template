@@ -4,7 +4,7 @@
 var assemblage: Component.Assemblage = 
 {
     name: "harvester",
-    description: "Harvester building produces gold.",
+    description: "Harvester buildings produce gold.",
     components: [
         'Displayable',
         'Position',
@@ -12,7 +12,8 @@ var assemblage: Component.Assemblage =
         'Animation',
         'AnimationSet',
         'Group',
-        'Selectable'        
+        'Selectable',
+        "Type"                
     ],
     initialState: {
         Displayable: {
@@ -24,7 +25,10 @@ var assemblage: Component.Assemblage =
         },
         AnimationSet: {
             setName: 'harvester'
-        }
+        },
+        Type : {
+            type:"harvester"
+        }        
     }
 };
 

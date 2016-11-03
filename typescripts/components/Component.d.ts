@@ -3,7 +3,7 @@
 declare module Component {
 
     type ComponentType = "Displayable" | "Position" | "Anchor" | "Sound" | "Rope" | "Input"|
-    "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" ;
+    "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" | "Type" ;
 
     interface Assemblage {
         name: string;
@@ -128,6 +128,15 @@ declare module Component {
     class GroupComponent implements EntityManager.Component {
         name: string;
         state: GroupState;
+    }
+
+    class TypeState {
+        type: string;
+    }
+
+    class TypeComponent implements EntityManager.Component {
+        name: string;
+        state: TypeState;
     }
 
 }

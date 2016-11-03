@@ -2,7 +2,7 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     var assemblage = {
         name: "base",
-        description: "Base building ",
+        description: "If your Base is destroyed, the attacking rival wins the fight \n and can steal your resoruces. \n Upgrading the Base unlock new buildings and upgrades. ",
         components: [
             'Displayable',
             'Position',
@@ -10,7 +10,8 @@ define(["require", "exports"], function (require, exports) {
             'Animation',
             'AnimationSet',
             'Group',
-            'Selectable'
+            'Selectable',
+            "Type"
         ],
         initialState: {
             Displayable: {
@@ -22,6 +23,9 @@ define(["require", "exports"], function (require, exports) {
             },
             AnimationSet: {
                 setName: 'base'
+            },
+            Type: {
+                type: "base"
             }
         }
     };

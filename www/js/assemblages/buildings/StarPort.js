@@ -2,7 +2,7 @@ define(["require", "exports"], function (require, exports) {
     "use strict";
     var assemblage = {
         name: "starport",
-        description: "Starport produces aircrafit or vehicle. ",
+        description: "The Starport produces aircraft or vehicles.\n Upgrade the Starport to develop more advanced aircraft or vehicles.",
         components: [
             'Displayable',
             'Position',
@@ -10,7 +10,8 @@ define(["require", "exports"], function (require, exports) {
             'Animation',
             'AnimationSet',
             'Group',
-            'Selectable'
+            'Selectable',
+            "Type"
         ],
         initialState: {
             Displayable: {
@@ -22,6 +23,9 @@ define(["require", "exports"], function (require, exports) {
             },
             AnimationSet: {
                 setName: 'starport'
+            },
+            Type: {
+                type: "starport"
             }
         }
     };

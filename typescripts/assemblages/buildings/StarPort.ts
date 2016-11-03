@@ -4,7 +4,7 @@
 var assemblage: Component.Assemblage = 
 {
     name: "starport",
-    description: "Starport produces aircrafit or vehicle. ",
+    description: "The Starport produces aircraft or vehicles.\n Upgrade the Starport to develop more advanced aircraft or vehicles.",
     components: [
         'Displayable',
         'Position',
@@ -12,7 +12,8 @@ var assemblage: Component.Assemblage =
         'Animation',
         'AnimationSet',
         'Group',
-        'Selectable'        
+        'Selectable',
+        "Type"        
     ],
     initialState: {
         Displayable: {
@@ -24,6 +25,9 @@ var assemblage: Component.Assemblage =
         },
         AnimationSet: {
             setName: 'starport'
+        },
+        Type : {
+            type:"starport"
         }
     }
 };
