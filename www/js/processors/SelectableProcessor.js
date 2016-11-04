@@ -45,15 +45,28 @@ define(["require", "exports", "assemblages/buildings/Base", "assemblages/buildin
             return "";
         };
         SelectableProcessor.prototype.update = function (deltaTime) {
+            var oldstyle = {
+                font: "12px Arial",
+                fill: "#FFFFE0",
+                align: "left",
+                backgroundColor: 'rgba(0,0,0,0.8)'
+            };
+            var style = { font: "12px Arial Black", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle",
+                backgroundColor: 'rgba(100,100,0,1)'
+            };
             if (this.isDitry) {
-                this.text = this.game.add.text(300, 32, "", {
-                    font: "12px Arial",
-                    fill: "#FFFFE0",
-                    align: "left",
-                    backgroundColor: 'rgba(0,0,0,0.8)'
-                });
+                this.text = this.game.add.text(0, 0, "", style);
+                this.text.visible = false;
                 this.text.lineSpacing = 1;
+                this.text.wordWrap = true;
+                this.text.wordWrapWidth = this.game.width;
+                this.text.stroke = '#000000';
+                this.text.strokeThickness = 3;
+                this.text.fixedToCamera = true;
                 this.createSelectableEventHandler();
+                this.game.input.onDown.add(function () {
+                    this.visible = false;
+                }, this.text);
             }
             else {
                 var selectableStates = this.manager.getComponentsData('Selectable');
@@ -64,6 +77,7 @@ define(["require", "exports", "assemblages/buildings/Base", "assemblages/buildin
                         var typeState = this.manager.getComponentDataForEntity('Type', +entityId);
                         var description = this.getDescription(typeState.type);
                         this.text.setText(description);
+                        this.text.visible = true;
                         break;
                     }
                 }

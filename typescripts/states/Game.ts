@@ -81,8 +81,8 @@ class Game extends Phaser.State {
     render() {
 
 
-        this.game.debug.cameraInfo(this.game.camera, 32, 32);
-        this.game.debug.text('FPS: ' + (this.game.time.fps || '--'), 400, 32, "#00ff00"); 
+        this.game.debug.cameraInfo(this.game.camera, 32, this.game.height-250);
+        this.game.debug.text('FPS: ' + (this.game.time.fps || '--'), this.game.width-100, 32, "#00ff00"); 
 
          var displayables = this.manager.getComponentsData('Displayable');
         for (var entityId in displayables) {

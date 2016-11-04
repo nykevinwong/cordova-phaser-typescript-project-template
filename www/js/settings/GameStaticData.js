@@ -132,6 +132,54 @@ define(["require", "exports"], function (require, exports) {
                 }
             ],
             "defaultAnimation": "healthy"
+        },
+        {
+            name: "ground-turret",
+            canAttack: true,
+            canTargetLand: true,
+            canTargetAir: false,
+            weaponType: "cannon-ball",
+            action: "guard",
+            direction: 0,
+            directions: 8,
+            orders: { type: "guard" },
+            pixelWidth: 38,
+            pixelHeight: 32,
+            baseWidth: 20,
+            baseHeight: 18,
+            cost: 1500,
+            pixelOffsetX: 9,
+            pixelOffsetY: 12,
+            buildableGrid: [
+                [1]
+            ],
+            passableGrid: [
+                [1]
+            ],
+            sight: 5,
+            hitPoints: 200,
+            "type": "building",
+            "animations": [
+                {
+                    "name": "teleport",
+                    "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "healthy",
+                    "frames": [9, 10, 11, 12, 13, 14, 15, 16, 17],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "damaged",
+                    "frames": [18],
+                    "loop": false,
+                    "framePerSecond": 10
+                }
+            ],
+            "defaultAnimation": "healthy"
         }
     ];
     function LoadGameData(key) {

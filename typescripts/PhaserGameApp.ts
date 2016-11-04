@@ -13,7 +13,7 @@ class PhaserGameApp  {
     constructor(app) {
         var screenDims = Utils.ScreenUtils.calculateScreenMetrics(800, 500,
                 Utils.Orientation.LANDSCAPE);
-        this.game = new Phaser.Game(screenDims.gameWidth, screenDims.gameHeight, Phaser.AUTO, 'content', { init: this.init, create: this.create });
+        this.game = new Phaser.Game(screenDims.gameWidth, screenDims.gameHeight, Phaser.CANVAS, 'content', { init: this.init, create: this.create });
         this.app = app;
 
     }

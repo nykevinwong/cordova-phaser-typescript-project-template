@@ -4,7 +4,7 @@
 var assemblage: Component.Assemblage =
     {
         name: "base",
-        description: "If your Base is destroyed, the attacking rival wins the fight \n and can steal your resoruces. \n Upgrading the Base unlock new buildings and upgrades. ",
+        description: "If your Base is destroyed, the attacking rival wins the fight and can steal your resoruces. Upgrading the Base unlock new buildings and upgrades. ",
         components: [
             'Displayable',
             'Position',

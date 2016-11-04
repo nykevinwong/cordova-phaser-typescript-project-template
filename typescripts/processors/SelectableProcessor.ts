@@ -74,16 +74,40 @@ class SelectableProcessor implements EntityManager.Processor {
 
 
     update(deltaTime: number): void {
-
-        if (this.isDitry) {
-            this.text = this.game.add.text(300, 32, "", {
+        var oldstyle = {
                 font: "12px Arial",
                 fill: "#FFFFE0",
                 align: "left",
             backgroundColor: 'rgba(0,0,0,0.8)'
-            });
-            this.text.lineSpacing = 1;    
+            };
+        var style  : Phaser.PhaserTextStyle = { font: "12px Arial Black", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" ,
+         backgroundColor: 'rgba(100,100,0,1)'
+    };
+
+         
+        if (this.isDitry) {
+            this.text= this.game.add.text(0, 0, "", style );
+            this.text.visible = false;
+           // this.text.anchor.x = 0.5;
+         //   this.text.anchor.y = 0.5;
+            this.text.lineSpacing = 1;
+            this.text.wordWrap = true;
+            this.text.wordWrapWidth = this.game.width;
+  this.text.stroke = '#000000';
+    this.text.strokeThickness = 3;
+            this.text.fixedToCamera = true
+            /*
+            this.text.x = this.game.world.centerX;    
+            this.text.y = this.game.world.centerY;    
+            */
+           // this.text.setTextBounds(100, 0, this.game.width-100, this.game.height);
+
             this.createSelectableEventHandler();
+
+             this.game.input.onDown.add(function () {
+            this.visible = false;
+             }, this.text);
+
         }
         else {
             var selectableStates: Component.SelectableState[] = this.manager.getComponentsData('Selectable');
@@ -96,6 +120,7 @@ class SelectableProcessor implements EntityManager.Processor {
                     var typeState: Component.TypeState = this.manager.getComponentDataForEntity('Type', +entityId);
                     var description : string = this.getDescription(typeState.type)
                     this.text.setText(description);
+                    this.text.visible = true;
                     break;
                 }
             }

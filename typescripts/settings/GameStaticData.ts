@@ -96,33 +96,33 @@ var GameStaticData =
             "defaultAnimation": "healthy"
         },
         {
-		    name:"harvester",
-		    pixelWidth:40,
-		    pixelHeight:60,
-		    baseWidth:40,
-		    baseHeight:20,
-		    pixelOffsetX:-2,
-		    pixelOffsetY:40,
-		    buildableGrid:[
-		        [1,1]
-		    ],
-		    passableGrid:[
-		        [1,1]
-		    ],
-		    sight:3,
-		    cost:5000,
-		    hitPoints:300,
+            name: "harvester",
+            pixelWidth: 40,
+            pixelHeight: 60,
+            baseWidth: 40,
+            baseHeight: 20,
+            pixelOffsetX: -2,
+            pixelOffsetY: 40,
+            buildableGrid: [
+                [1, 1]
+            ],
+            passableGrid: [
+                [1, 1]
+            ],
+            sight: 3,
+            cost: 5000,
+            hitPoints: 300,
             "type": "building",
             "animations": [
                 {
                     "name": "deploy",
-                    "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11,12,13,14,15,16],
+                    "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
                     "loop": false,
                     "framePerSecond": 10
                 },
                 {
                     "name": "healthy",
-                    "frames": [17,18,19],
+                    "frames": [17, 18, 19],
                     "loop": true,
                     "framePerSecond": 10
                 },
@@ -135,7 +135,56 @@ var GameStaticData =
 
             ],
             "defaultAnimation": "healthy"
-		}
+        },
+        {
+            name: "ground-turret",
+            canAttack: true,
+            canTargetLand: true,
+            canTargetAir: false,
+            weaponType: "cannon-ball",
+            action: "guard", // Default action is guard unlike other buildings
+            direction: 0, // Face upward (0) by default
+            directions: 8, // Total of 8 turret directions allowed (0-7)
+            orders: { type: "guard" },
+            pixelWidth: 38,
+            pixelHeight: 32,
+            baseWidth: 20,
+            baseHeight: 18,
+            cost: 1500,
+            pixelOffsetX: 9,
+            pixelOffsetY: 12,
+            buildableGrid: [
+                [1]
+            ],
+            passableGrid: [
+                [1]
+            ],
+            sight: 5,
+            hitPoints: 200,
+            "type": "building",
+            "animations": [
+                {
+                    "name": "teleport",
+                    "frames": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "healthy",
+                    "frames": [9,10,11,12,13,14,15,16,17],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "damaged",
+                    "frames": [18],
+                    "loop": false,
+                    "framePerSecond": 10
+                }
+
+            ],
+            "defaultAnimation": "healthy"
+        }
     ];
 
 function LoadGameData(key: string) {

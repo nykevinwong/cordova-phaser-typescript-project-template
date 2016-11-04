@@ -4,7 +4,7 @@
 var assemblage: Component.Assemblage = 
 {
     name: "starport",
-    description: "The Starport produces aircraft or vehicles.\n Upgrade the Starport to develop more advanced aircraft or vehicles.",
+    description: "The Starport produces aircraft and vehicles. Upgrade the Starport to develop more advanced aircraft and vehicles.",
     components: [
         'Displayable',
         'Position',
