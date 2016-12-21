@@ -1,7 +1,7 @@
 # cordova-phaser-typescript-project-template
 
 [demo link](https://nykevinwong.github.io/cordova-phaser-typescript-project-template/www/)</br>
-[run unit testing](https://nykevinwong.github.io/cordova-phaser-typescript-project-template/www/SpecRunner.html)
+[run unit testing](https://nykevinwong.github.io/cordova-phaser-typescript-project-template/www/SpecRunner.html)</br>
 [Microsoft Azure AppService for hosting your web app](https://docs.microsoft.com/en-us/azure/app-service-web/app-service-web-get-started-cli-nodejs)
 
 #Prerequisite
