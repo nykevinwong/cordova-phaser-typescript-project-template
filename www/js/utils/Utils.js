@@ -6,11 +6,11 @@ define(["require", "exports"], function (require, exports) {
         return ScreenMetrics;
     }());
     exports.ScreenMetrics = ScreenMetrics;
+    var Orientation;
     (function (Orientation) {
         Orientation[Orientation["PORTRAIT"] = 0] = "PORTRAIT";
         Orientation[Orientation["LANDSCAPE"] = 1] = "LANDSCAPE";
-    })(exports.Orientation || (exports.Orientation = {}));
-    var Orientation = exports.Orientation;
+    })(Orientation = exports.Orientation || (exports.Orientation = {}));
     ;
     var ScreenUtils = (function () {
         function ScreenUtils() {

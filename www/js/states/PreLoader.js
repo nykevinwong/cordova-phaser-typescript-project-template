@@ -8,7 +8,7 @@ define(["require", "exports", "../GlobalEntityManager", "processors/InputProcess
     var PreLoader = (function (_super) {
         __extends(PreLoader, _super);
         function PreLoader() {
-            _super.call(this);
+            return _super.call(this) || this;
         }
         PreLoader.prototype.init = function () {
             GlobalEntityManager.addComponent(Input.name, Input);
@@ -33,6 +33,7 @@ define(["require", "exports", "../GlobalEntityManager", "processors/InputProcess
             this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
             this.game.load.spritesheet('starport', 'assets/gfx/buildings/starport.png', 40, 60);
             this.game.load.spritesheet('harvester', 'assets/gfx/buildings/harvester.png', 40, 60);
+            this.game.load.spritesheet('ground-turret', 'assets/gfx/buildings/ground-turret.png', 38, 32);
         };
         PreLoader.prototype.create = function () {
             this.add.tween(this.background)

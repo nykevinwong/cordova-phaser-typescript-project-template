@@ -8,7 +8,7 @@ define(["require", "exports", "utils/Utils"], function (require, exports, Utils)
     var Boot = (function (_super) {
         __extends(Boot, _super);
         function Boot() {
-            _super.call(this);
+            return _super.call(this) || this;
         }
         Boot.prototype.init = function () {
             this.game.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);

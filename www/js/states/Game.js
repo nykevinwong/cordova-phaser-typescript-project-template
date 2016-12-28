@@ -3,12 +3,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester", "assemblages/buildings/Ground-turret"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
         function Game() {
-            _super.call(this);
+            return _super.call(this) || this;
         }
         Game.prototype.preload = function () {
         };
@@ -17,7 +17,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.game.time.advancedTiming = true;
             var components = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type];
             this.manager.addComponents(components);
-            var assemblages = [BaseAssemblage, StarPortAssemblage, HarvesterAssemblage];
+            var assemblages = [BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage];
             this.manager.addAssemblages(assemblages);
         };
         Game.prototype.create = function () {
@@ -29,6 +29,8 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.manager.updateComponentDataForEntity('Position', baseEntityId3, { x: 360, y: 200 });
             var baseEntityId4 = this.manager.createEntityFromAssemblage('harvester');
             this.manager.updateComponentDataForEntity('Position', baseEntityId4, { x: 460, y: 200 });
+            var baseEntityId5 = this.manager.createEntityFromAssemblage('ground-turret');
+            this.manager.updateComponentDataForEntity('Position', baseEntityId5, { x: 560, y: 200 });
             this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
             this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
             this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));

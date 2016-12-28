@@ -59,7 +59,7 @@ class SelectableProcessor implements EntityManager.Processor {
     }
 
     getDescription(name: string): string {
-        var assemblages = [BaseAssemblage, StarPortAssemblage, HarvesterAssemblage];
+        var assemblages = this.manager.getAssemblages();
 
         for (var key in assemblages) {
             var assemblage = assemblages[key];

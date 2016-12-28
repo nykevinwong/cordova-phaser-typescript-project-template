@@ -8,7 +8,7 @@ define(["require", "exports", "slick-ui"], function (require, exports, SlickUI) 
     var MenuTest = (function (_super) {
         __extends(MenuTest, _super);
         function MenuTest() {
-            _super.call(this);
+            return _super.call(this) || this;
         }
         MenuTest.prototype.init = function () {
             SlickUI.setGame(this.game);

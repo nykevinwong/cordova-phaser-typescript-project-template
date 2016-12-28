@@ -48,6 +48,7 @@ class PreLoader extends Phaser.State {
         this.game.load.spritesheet('base', 'assets/gfx/buildings/base.png', 60, 60);
         this.game.load.spritesheet('starport', 'assets/gfx/buildings/starport.png', 40, 60);
         this.game.load.spritesheet('harvester', 'assets/gfx/buildings/harvester.png', 40, 60);
+        this.game.load.spritesheet('ground-turret', 'assets/gfx/buildings/ground-turret.png', 38, 32);
 
 
     }

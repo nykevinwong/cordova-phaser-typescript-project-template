@@ -3,7 +3,7 @@ define(["require", "exports"], function (require, exports) {
     var GameStaticData = [
         {
             "name": "base",
-            "pixelWidth": 60,
+            "pixelWidth": 55,
             "pixelHeight": 60,
             "baseWidth": 40,
             "baseHeight": 40,
@@ -168,9 +168,9 @@ define(["require", "exports"], function (require, exports) {
                 },
                 {
                     "name": "healthy",
-                    "frames": [9, 10, 11, 12, 13, 14, 15, 16, 17],
+                    "frames": [9, 10, 11, 12, 13, 14, 15, 16],
                     "loop": false,
-                    "framePerSecond": 10
+                    "framePerSecond": 30
                 },
                 {
                     "name": "damaged",

@@ -19,6 +19,7 @@ import Type = require("components/Type");
 import BaseAssemblage = require("assemblages/buildings/Base")
 import StarPortAssemblage = require("assemblages/buildings/StarPort")
 import HarvesterAssemblage = require("assemblages/buildings/Harvester")
+import GroundTurretAssemblage = require("assemblages/buildings/Ground-turret")
 
 class Game extends Phaser.State {
     private manager: EntityManager;
@@ -39,7 +40,7 @@ class Game extends Phaser.State {
         this.manager.addComponents(components);
 
         // assemblages is a pre-setup template used to create game entities.
-        var assemblages = [BaseAssemblage, StarPortAssemblage , HarvesterAssemblage];
+        var assemblages = [BaseAssemblage, StarPortAssemblage , HarvesterAssemblage, GroundTurretAssemblage];
         this.manager.addAssemblages(assemblages);
 
     }
@@ -61,6 +62,9 @@ class Game extends Phaser.State {
 
         var baseEntityId4 = this.manager.createEntityFromAssemblage('harvester');
         this.manager.updateComponentDataForEntity('Position', baseEntityId4, { x: 460, y: 200 });
+
+        var baseEntityId5 = this.manager.createEntityFromAssemblage('ground-turret');
+        this.manager.updateComponentDataForEntity('Position', baseEntityId5, { x: 560, y: 200 });
 
         this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
         this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));

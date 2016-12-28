@@ -1,4 +1,4 @@
-define(["require", "exports", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester"], function (require, exports, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage) {
+define(["require", "exports"], function (require, exports) {
     "use strict";
     var SelectableProcessor = (function () {
         function SelectableProcessor(manager, game) {
@@ -35,7 +35,7 @@ define(["require", "exports", "assemblages/buildings/Base", "assemblages/buildin
             this.isDitry = false;
         };
         SelectableProcessor.prototype.getDescription = function (name) {
-            var assemblages = [BaseAssemblage, StarPortAssemblage, HarvesterAssemblage];
+            var assemblages = this.manager.getAssemblages();
             for (var key in assemblages) {
                 var assemblage = assemblages[key];
                 if (assemblage.name == name) {

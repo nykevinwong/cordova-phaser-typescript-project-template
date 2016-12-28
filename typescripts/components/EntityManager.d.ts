@@ -37,6 +37,7 @@ declare  class EntityManager {
     entityHasComponent(entityId:number, componentId:string): boolean;
     addAssemblage(id: string, assemblage: any): EntityManager;
     addAssemblages(assemblage:any[]): EntityManager;
+    getAssemblages():any[];
     removeAssemblage(id: string);
     createEntityFromAssemblage(assemblageId:string) : number;
     addProcessor(processor: EntityManager.Processor): EntityManager; 

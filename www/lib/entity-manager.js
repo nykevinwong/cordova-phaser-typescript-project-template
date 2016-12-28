@@ -408,6 +408,14 @@ define(function () {
     // ASSEMBLAGES
 
     /**
+     * Get a list of predefined Assemblags
+     * @return {object} - this.assemblags
+     */
+    EntityManager.prototype.getAssemblages = function () {
+        return this.assemblages;
+    };
+
+    /**
      * Add an assemblage to the list of known assemblages.
      *
      * @param {string} id - Unique identifier of the assemblage.

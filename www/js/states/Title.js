@@ -8,7 +8,7 @@ define(["require", "exports", "components/EntityManager", "../GlobalEntityManage
     var Title = (function (_super) {
         __extends(Title, _super);
         function Title() {
-            _super.call(this);
+            return _super.call(this) || this;
         }
         Title.prototype.init = function () {
             this.manager = new EntityManager();
