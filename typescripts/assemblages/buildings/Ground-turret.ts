@@ -9,7 +9,7 @@ var assemblage: Component.Assemblage =
         'Displayable',
         'Position',
         'DragDrop',
-        'Animation',
+//        'Animation',
         'AnimationSet',
         'Group',
         'Selectable',

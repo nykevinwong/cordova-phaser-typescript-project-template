@@ -6,6 +6,7 @@ import TileMapProcessor = require("processors/TileMapProcessor");
 import AnimationProcessor = require("processors/AnimationProcessor");
 import GroupProcessor = require("processors/GroupProcessor");
 import SelectableProcessor = require("processors/SelectableProcessor");
+import StateProcessor = require("processors/StateProcessor");
 
 import Displayable = require("components/Displayable");
 import Position = require("components/Position");
@@ -15,6 +16,7 @@ import AnimationSet = require("components/AnimationSet");
 import Group = require("components/Group");
 import Selectable = require("components/Selectable");
 import Type = require("components/Type");
+import State = require("components/State");
 
 import BaseAssemblage = require("assemblages/buildings/Base")
 import StarPortAssemblage = require("assemblages/buildings/StarPort")
@@ -36,7 +38,7 @@ class Game extends Phaser.State {
 
         this.game.time.advancedTiming = true; // enable FPS
         // set up entity manager with creatable component list.
-        var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type];
+        var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State];
         this.manager.addComponents(components);
 
         // assemblages is a pre-setup template used to create game entities.
@@ -71,6 +73,7 @@ class Game extends Phaser.State {
         this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
         this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));
         this.manager.addProcessor(new AnimationProcessor(this.manager, this.game));
+        this.manager.addProcessor(new StateProcessor(this.manager, this.game));
         this.manager.addProcessor(new GroupProcessor(this.manager, this.game));
         this.manager.addProcessor(new SelectableProcessor(this.manager, this.game));
 

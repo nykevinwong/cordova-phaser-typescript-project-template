@@ -7,7 +7,6 @@ define(["require", "exports"], function (require, exports) {
             'Displayable',
             'Position',
             'DragDrop',
-            'Animation',
             'AnimationSet',
             'Group',
             'Selectable',

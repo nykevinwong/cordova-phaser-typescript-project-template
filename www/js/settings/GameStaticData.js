@@ -3,6 +3,7 @@ define(["require", "exports"], function (require, exports) {
     var GameStaticData = [
         {
             "name": "base",
+            action: "stand",
             "pixelWidth": 55,
             "pixelHeight": 60,
             "baseWidth": 40,
@@ -45,6 +46,7 @@ define(["require", "exports"], function (require, exports) {
         },
         {
             name: "starport",
+            action: "stand",
             pixelWidth: 40,
             pixelHeight: 60,
             baseWidth: 40,
@@ -79,6 +81,12 @@ define(["require", "exports"], function (require, exports) {
                     "framePerSecond": 10
                 },
                 {
+                    "name": "opening",
+                    "frames": [26, 25, 24, 23, 22, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
                     "name": "healthy",
                     "frames": [27, 28, 29, 30],
                     "loop": true,
@@ -95,6 +103,7 @@ define(["require", "exports"], function (require, exports) {
         },
         {
             name: "harvester",
+            action: "stand",
             pixelWidth: 40,
             pixelHeight: 60,
             baseWidth: 40,

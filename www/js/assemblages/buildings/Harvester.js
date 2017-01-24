@@ -11,7 +11,8 @@ define(["require", "exports"], function (require, exports) {
             'AnimationSet',
             'Group',
             'Selectable',
-            "Type"
+            "Type",
+            "State"
         ],
         initialState: {
             Displayable: {
@@ -26,6 +27,13 @@ define(["require", "exports"], function (require, exports) {
             },
             Type: {
                 type: "harvester"
+            },
+            Animation: {
+                animationName: "deploy",
+                initialized: false
+            },
+            State: {
+                stateName: "deploy"
             }
         }
     };

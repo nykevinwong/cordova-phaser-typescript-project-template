@@ -4,9 +4,7 @@ define(["require", "exports"], function (require, exports) {
         name: 'Animation',
         state: {
             animationName: null,
-            loop: false,
-            frameCountPerSecond: null,
-            animationSet: null
+            initialized: false
         }
     };
     return AnimationComponent;

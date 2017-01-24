@@ -13,7 +13,8 @@ var assemblage: Component.Assemblage =
         'AnimationSet',
         'Group',
         'Selectable',
-        "Type"        
+        "Type",
+        "State"        
     ],
     initialState: {
         Displayable: {
@@ -28,6 +29,13 @@ var assemblage: Component.Assemblage =
         },
         Type : {
             type:"starport"
+        },
+        Animation: {
+            animationName: "opening",
+            initialized:false
+        },
+        State: {
+            stateName: "open"
         }
     }
 };

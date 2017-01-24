@@ -1,9 +1,6 @@
 /// <reference path="../components/EntityManager.d.ts" />
 /// <reference path='../components/Component.d.ts' />
 /// <reference path="../definitions/phaser.d.ts" />
-import BaseAssemblage = require("assemblages/buildings/Base")
-import StarPortAssemblage = require("assemblages/buildings/StarPort")
-import HarvesterAssemblage = require("assemblages/buildings/Harvester")
 
 class SelectableProcessor implements EntityManager.Processor {
 

@@ -3,7 +3,7 @@
 declare module Component {
 
     type ComponentType = "Displayable" | "Position" | "Anchor" | "Sound" | "Rope" | "Input"|
-    "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" | "Type" ;
+    "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" | "Type" | "State" ;
 
     interface Assemblage {
         name: string;
@@ -26,9 +26,7 @@ declare module Component {
 
     class AnimationState {
         animationName: string;
-        loop: boolean;
-        frameCountPerSecond: number;
-        animationSet: string;
+        initialized: boolean;
     }
 
     class AnimationComponent implements EntityManager.Component {
@@ -137,6 +135,15 @@ declare module Component {
     class TypeComponent implements EntityManager.Component {
         name: string;
         state: TypeState;
+    }
+
+    class StateState {
+        stateName: string;
+    }
+
+    class StateComponent implements EntityManager.Component {
+        name: string;
+        state: StateState;
     }
 
 }

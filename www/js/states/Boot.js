@@ -40,6 +40,7 @@ define(["require", "exports", "utils/Utils"], function (require, exports, Utils)
         };
         Boot.prototype.create = function () {
             this.game.stage.backgroundColor = '#ffffff';
+            this.game.stage.smoothed = false;
             this.game.state.start('Preload');
         };
         Boot.prototype.update = function () {

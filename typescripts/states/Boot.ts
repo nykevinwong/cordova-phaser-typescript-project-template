@@ -45,7 +45,8 @@ class Boot extends Phaser.State {
    }
  
    create() {
-            this.game.stage.backgroundColor = '#ffffff'
+            this.game.stage.backgroundColor = '#ffffff';
+            this.game.stage.smoothed = false; // make it crystal clear pixel
             this.game.state.start('Preload');
    }
 

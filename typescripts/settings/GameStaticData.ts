@@ -2,6 +2,7 @@ var GameStaticData =
     [
         {
             "name": "base",
+            action: "stand",
             // Properties for drawing the object
             "pixelWidth": 55,
             "pixelHeight": 60,
@@ -46,6 +47,7 @@ var GameStaticData =
         },
         {
             name: "starport",
+            action: "stand",
             pixelWidth: 40,
             pixelHeight: 60,
             baseWidth: 40,
@@ -80,6 +82,12 @@ var GameStaticData =
                     "framePerSecond": 10
                 },
                 {
+                    "name": "opening",
+                    "frames": [26,25,24,23,22,20,19,18,17,16,15,14,13,12,11,10,9],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
                     "name": "healthy",
                     "frames": [27, 28, 29, 30],
                     "loop": true,
@@ -97,6 +105,7 @@ var GameStaticData =
         },
         {
             name: "harvester",
+            action: "stand",
             pixelWidth: 40,
             pixelHeight: 60,
             baseWidth: 40,

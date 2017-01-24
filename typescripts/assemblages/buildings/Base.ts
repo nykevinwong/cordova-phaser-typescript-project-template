@@ -9,7 +9,7 @@ var assemblage: Component.Assemblage =
             'Displayable',
             'Position',
             'DragDrop',
-            'Animation',
+    //        'Animation',
             'AnimationSet',
             'Group',
             'Selectable',
@@ -17,7 +17,7 @@ var assemblage: Component.Assemblage =
         ],
         initialState: {
             Displayable: {
-                sprite: 'base'
+                sprite: 'base' // load texture name
             },
             Position: {
                 x: 300,
@@ -28,7 +28,7 @@ var assemblage: Component.Assemblage =
             },
             Type: {
                 type: "base"
-            }
+            }            
         }
     };
 

@@ -13,7 +13,8 @@ var assemblage: Component.Assemblage =
         'AnimationSet',
         'Group',
         'Selectable',
-        "Type"                
+        "Type",
+        "State"                
     ],
     initialState: {
         Displayable: {
@@ -26,8 +27,15 @@ var assemblage: Component.Assemblage =
         AnimationSet: {
             setName: 'harvester'
         },
-        Type : {
+        Type: {
             type:"harvester"
+        },
+        Animation: {
+            animationName: "deploy",
+            initialized:false
+        },
+        State: {
+            stateName: "deploy"
         }        
     }
 };

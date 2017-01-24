@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester", "assemblages/buildings/Ground-turret"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "processors/StateProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "components/State", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester", "assemblages/buildings/Ground-turret"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, StateProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -15,7 +15,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
         Game.prototype.init = function () {
             this.manager = new EntityManager();
             this.game.time.advancedTiming = true;
-            var components = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type];
+            var components = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State];
             this.manager.addComponents(components);
             var assemblages = [BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage];
             this.manager.addAssemblages(assemblages);
@@ -36,6 +36,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
             this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));
             this.manager.addProcessor(new AnimationProcessor(this.manager, this.game));
+            this.manager.addProcessor(new StateProcessor(this.manager, this.game));
             this.manager.addProcessor(new GroupProcessor(this.manager, this.game));
             this.manager.addProcessor(new SelectableProcessor(this.manager, this.game));
         };

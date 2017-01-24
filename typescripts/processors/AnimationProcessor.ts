@@ -7,24 +7,29 @@ class AnimationProcessor implements EntityManager.Processor {
 
     private manager: EntityManager;
     private game: Phaser.Game;
-    private isDirty: boolean;
+    private isAnimationSetDirty: boolean;
+    private isDitry: boolean;
 
     constructor(manager: EntityManager, game: Phaser.Game) {
         this.manager = manager;
         this.game = game;
-        this.isDirty = true;
+        this.isAnimationSetDirty = true;
+        this.isDitry = true;
     }
 
 
     loadAnimationSet(): void {
         var animationSetStates: Component.AnimationSetState[] = this.manager.getComponentsData('AnimationSet');
         var displayables: Component.DisplayableState[] = this.manager.getComponentsData('Displayable');
+        var types: Component.TypeState[] = this.manager.getComponentsData('Type');
         var animationLoaded: number = 0;
         var count : number = 0;
 
         for (var entityId in animationSetStates) {
             var animationSetState: Component.AnimationSetState = animationSetStates[entityId];
             var displayableState: Component.DisplayableState = displayables[entityId];
+            var typeState: Component.TypeState = types[entityId];
+
             count++;
 
             if (animationSetState.loaded) {
@@ -33,7 +38,7 @@ class AnimationProcessor implements EntityManager.Processor {
             }
 
             var sprite: Phaser.Sprite = displayableState.spriteReference;
-                var json =  GameStaticData(animationSetState.setName); // this.game.cache.getJSON(animationSetState.setName);
+            var json =  GameStaticData(typeState.type); // this.game.cache.getJSON(animationSetState.setName);
 
             if (sprite != null && json != null) {
                 var animations = json.animations;
@@ -43,7 +48,7 @@ class AnimationProcessor implements EntityManager.Processor {
                     sprite.animations.add(animation.name,
                         animation.frames,
                         animation.framePerSecond,
-                        animation.loop);
+                        animation.loop);         
                 }
 
                 sprite.animations.play(json.defaultAnimation);
@@ -55,36 +60,65 @@ class AnimationProcessor implements EntityManager.Processor {
         if(count == animationLoaded)
         {
             console.log("ALL AnimationProcessor-AnimationSet are INTIALIZED.");
-            this.isDirty = false;
+            this.isAnimationSetDirty = false;
         }
 
     }
 
-    createAnimation(): void {
+    updateAnimation(): void {
         var animationStates: Component.AnimationState[] = this.manager.getComponentsData('Animation');
         var displayables: Component.DisplayableState[] = this.manager.getComponentsData('Displayable');
+        var count : number = 0;
 
         for (var entityId in animationStates) {
             var animationState: Component.AnimationState = animationStates[entityId];
-            var displayableState: Component.DisplayableState = displayables[entityId];
 
             if (animationState.animationName != null) {
-                if (displayableState.spriteReference != null) {
+                if(animationState.initialized == null || animationState.initialized == false)
+                {
+                    var displayableState: Component.DisplayableState = displayables[entityId];
 
-                    console.log("AnimationProcessor-AnimationComponent[" + entityId + "," + displayableState.sprite + "]: INITIALZIED. ");
-                    console.log(animationState);
-
+                    if (displayableState.spriteReference != null) {
+                        var sprite: Phaser.Sprite = displayableState.spriteReference;
+                        sprite.animations.play(animationState.animationName);
+                        console.log("AnimationProcessor-AnimationComponent[" + entityId + "," + displayableState.sprite + "]: INITIALZIED. ");
+                        count++;
+                        animationState.initialized = true;
+                        this.manager.updateComponentDataForEntity("Animation", +entityId, animationState);
+                    }
+                    else
+                    {
+                        console.log("AnimationProcessor-AnimationComponent[" + entityId + "] has no sprite Refernce from Displayable.");
+                        console.log(displayableState);
+                    }
                 }
-
             }
-
+            else
+            {
+                console.log("AnimationProcessor-AnimationComponent[" + entityId + "] has no animationName from Animation.");
+                count++; // animationName = null means there's no animation to update.
+            }
+           
+            console.log(animationState);
         }
+/*
+        if(animationStates.length == count)
+        {
+             console.log("ALL AnimationProcessor-AnimationComponent are COMPLETED Processing.");
+             this.isDitry = false;
+    } */
+
     }
 
     update(deltaTime: number): void {
 
-        if(this.isDirty)
+        if(this.isAnimationSetDirty)
             this.loadAnimationSet();
+
+        if(this.isDitry)
+        {
+            this.updateAnimation();            
+        }
     }
 }
 
