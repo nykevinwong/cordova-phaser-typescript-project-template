@@ -3,7 +3,8 @@
 declare module Component {
 
     type ComponentType = "Displayable" | "Position" | "Anchor" | "Sound" | "Rope" | "Input"|
-    "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" | "Type" | "State" ;
+    "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" | "Type" | "State" |
+    "HealthPoint" ;
 
     interface Assemblage {
         name: string;
@@ -146,5 +147,13 @@ declare module Component {
         state: StateState;
     }
 
+    class HealthPointState {
+        hp: number;
+    }
+
+    class HealthPointComponent implements EntityManager.Component {
+        name: string;
+        state: HealthPointState;
+    }
 }
 

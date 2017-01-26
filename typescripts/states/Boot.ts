@@ -33,6 +33,9 @@ class Boot extends Phaser.State {
                 this.scale.pageAlignVertically = true;
                 this.scale.forceOrientation(true, false);
             }
+            // enable crisp rendering
+            this.game.renderer.renderSession.roundPixels = true;  
+            Phaser.Canvas.setImageRenderingCrisp(this.game.canvas) 
 
             console.log(screenDims);
     }
@@ -46,7 +49,6 @@ class Boot extends Phaser.State {
  
    create() {
             this.game.stage.backgroundColor = '#ffffff';
-            this.game.stage.smoothed = false; // make it crystal clear pixel
             this.game.state.start('Preload');
    }
 

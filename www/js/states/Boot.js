@@ -30,6 +30,8 @@ define(["require", "exports", "utils/Utils"], function (require, exports, Utils)
                 this.scale.pageAlignVertically = true;
                 this.scale.forceOrientation(true, false);
             }
+            this.game.renderer.renderSession.roundPixels = true;
+            Phaser.Canvas.setImageRenderingCrisp(this.game.canvas);
             console.log(screenDims);
         };
         Boot.prototype.preload = function () {
@@ -40,7 +42,6 @@ define(["require", "exports", "utils/Utils"], function (require, exports, Utils)
         };
         Boot.prototype.create = function () {
             this.game.stage.backgroundColor = '#ffffff';
-            this.game.stage.smoothed = false;
             this.game.state.start('Preload');
         };
         Boot.prototype.update = function () {

@@ -1,4 +1,4 @@
-define(["require", "exports"], function (require, exports) {
+define(["require", "exports", "settings/GameStaticData"], function (require, exports, GameStaticData) {
     "use strict";
     var assemblage = {
         name: "base",
@@ -10,7 +10,8 @@ define(["require", "exports"], function (require, exports) {
             'AnimationSet',
             'Group',
             'Selectable',
-            "Type"
+            "Type",
+            'HealthPoint'
         ],
         initialState: {
             Displayable: {
@@ -24,7 +25,10 @@ define(["require", "exports"], function (require, exports) {
                 setName: 'base'
             },
             Type: {
-                type: "base"
+                type: GameStaticData("base").type
+            },
+            HealthPoint: {
+                hp: GameStaticData("base").hitPoints
             }
         }
     };

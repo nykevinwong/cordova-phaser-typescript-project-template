@@ -1,5 +1,6 @@
 /// <reference path="../../components/EntityManager.d.ts" />
 /// <reference path="../../components/Component.d.ts" />
+import GameStaticData = require("settings/GameStaticData");
 
 var assemblage: Component.Assemblage =
     {
@@ -13,7 +14,8 @@ var assemblage: Component.Assemblage =
             'AnimationSet',
             'Group',
             'Selectable',
-            "Type"
+            "Type",
+            'HealthPoint'
         ],
         initialState: {
             Displayable: {
@@ -27,7 +29,10 @@ var assemblage: Component.Assemblage =
                 setName: 'base'
             },
             Type: {
-                type: "base"
+                type: GameStaticData("base").type
+            },
+            HealthPoint: {
+                hp: GameStaticData("base").hitPoints               
             }            
         }
     };

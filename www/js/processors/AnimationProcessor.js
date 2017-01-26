@@ -54,20 +54,21 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
                             sprite.animations.play(animationState.animationName);
                             console.log("AnimationProcessor-AnimationComponent[" + entityId + "," + displayableState.sprite + "]: INITIALZIED. ");
                             count++;
-                            animationState.initialized = true;
-                            this.manager.updateComponentDataForEntity("Animation", +entityId, animationState);
                         }
                         else {
                             console.log("AnimationProcessor-AnimationComponent[" + entityId + "] has no sprite Refernce from Displayable.");
                             console.log(displayableState);
                         }
+                        animationState.initialized = true;
+                        this.manager.updateComponentDataForEntity("Animation", +entityId, animationState);
+                        console.log(animationState);
                     }
                 }
                 else {
                     console.log("AnimationProcessor-AnimationComponent[" + entityId + "] has no animationName from Animation.");
+                    console.log(animationState);
                     count++;
                 }
-                console.log(animationState);
             }
         };
         AnimationProcessor.prototype.update = function (deltaTime) {
