@@ -25,7 +25,7 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
                 setName: 'base'
             },
             Type: {
-                type: GameStaticData("base").type
+                type: "base",
             },
             HealthPoint: {
                 hp: GameStaticData("base").hitPoints

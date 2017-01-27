@@ -29,7 +29,7 @@ var assemblage: Component.Assemblage =
                 setName: 'base'
             },
             Type: {
-                type: GameStaticData("base").type
+                type: "base", // GameStaticData("base").type /// not working. should use .name, .type means "building"
             },
             HealthPoint: {
                 hp: GameStaticData("base").hitPoints               

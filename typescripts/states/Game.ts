@@ -7,6 +7,8 @@ import AnimationProcessor = require("processors/AnimationProcessor");
 import GroupProcessor = require("processors/GroupProcessor");
 import SelectableProcessor = require("processors/SelectableProcessor");
 import StateProcessor = require("processors/StateProcessor");
+import HealthBarRenderingProcessor = require("processors/HealthBarRenderingProcessor");
+import PositionProcessor = require("processors/PositionProcessor");
 
 import Displayable = require("components/Displayable");
 import Position = require("components/Position");
@@ -23,6 +25,7 @@ import BaseAssemblage = require("assemblages/buildings/Base")
 import StarPortAssemblage = require("assemblages/buildings/StarPort")
 import HarvesterAssemblage = require("assemblages/buildings/Harvester")
 import GroundTurretAssemblage = require("assemblages/buildings/Ground-turret")
+
 
 class Game extends Phaser.State {
     private manager: EntityManager;
@@ -59,6 +62,7 @@ class Game extends Phaser.State {
 
         var baseEntityId2 = this.manager.createEntityFromAssemblage('base');
         this.manager.updateComponentDataForEntity('Position', baseEntityId2, { x: 400, y: 400 });
+        this.manager.updateComponentDataForEntity('HealthPoint', baseEntityId2, { hp:100 });
 
         var baseEntityId3 = this.manager.createEntityFromAssemblage('starport');
         this.manager.updateComponentDataForEntity('Position', baseEntityId3, { x: 360, y: 200 });
@@ -72,14 +76,14 @@ class Game extends Phaser.State {
         this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
         this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
         this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
+        this.manager.addProcessor(new HealthBarRenderingProcessor(this.manager, this.game));
         this.manager.addProcessor(new DragDropProcessor(this.manager, this.game));
         this.manager.addProcessor(new AnimationProcessor(this.manager, this.game));
         this.manager.addProcessor(new StateProcessor(this.manager, this.game));
         this.manager.addProcessor(new GroupProcessor(this.manager, this.game));
         this.manager.addProcessor(new SelectableProcessor(this.manager, this.game));
-
+        this.manager.addProcessor(new PositionProcessor(this.manager, this.game));
         
-
     }
 
     update() {
@@ -87,7 +91,6 @@ class Game extends Phaser.State {
     }
 
     render() {
-
 
         this.game.debug.cameraInfo(this.game.camera, 32, this.game.height-250);
         this.game.debug.text('FPS: ' + (this.game.time.fps || '--'), this.game.width-100, 32, "#00ff00"); 
