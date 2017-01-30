@@ -13,7 +13,8 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
             'Selectable',
             "Type",
             "HealthPoint",
-            "State"
+            "State",
+            "Direction"
         ],
         initialState: {
             Displayable: {
@@ -38,6 +39,9 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
             },
             State: {
                 stateName: "fly"
+            },
+            Direction: {
+                direction: 1,
             }
         }
     };

@@ -20,6 +20,7 @@ import Selectable = require("components/Selectable");
 import Type = require("components/Type");
 import State = require("components/State");
 import HealthPoint = require("components/HealthPoint");
+import Direction = require("components/Direction");
 
 import BaseAssemblage = require("assemblages/buildings/Base")
 import StarPortAssemblage = require("assemblages/buildings/StarPort")
@@ -43,7 +44,10 @@ class Game extends Phaser.State {
 
         this.game.time.advancedTiming = true; // enable FPS
         // set up entity manager with creatable component list.
-        var components: EntityManager.Component[] = [Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State, HealthPoint];
+        var components: EntityManager.Component[] = [
+            Displayable, Position, DragDrop, Animation, 
+            AnimationSet, Group, Selectable, Type, 
+            State, HealthPoint, Direction];
         this.manager.addComponents(components);
 
         // assemblages is a pre-setup template used to create game entities.

@@ -28,7 +28,7 @@ class StateProcessor implements EntityManager.Processor {
         this.manager.updateComponentDataForEntity("State", entityId, { stateName: name});
     }
 
-    processBuildingState(entityStaticData: any, entityId, state: Component.StateState, sprite: Phaser.Sprite)
+    processBuildingState(entityStaticData: any, entityId: number, state: Component.StateState, sprite: Phaser.Sprite)
     {
         switch(state.stateName)
         {
@@ -104,13 +104,21 @@ class StateProcessor implements EntityManager.Processor {
 
     }
 
-    processAirCraftState(entityStaticData: any, entityId, state: Component.StateState, sprite: Phaser.Sprite)
+    processAirCraftState(entityStaticData: any, entityId: number, state: Component.StateState, sprite: Phaser.Sprite)
     {
+        var directionState:Component.DirectionState = this.manager.getComponentDataForEntity("Direction", entityId)
+
         switch(state.stateName)
         {
             case "fly":
             {
-                var direction = Utils.Navigation.wrapDirection(Math.round(this.direction),entityStaticData.directions);
+                var direction: number = Utils.Navigation.wrapDirection(Math.round(directionState.direction), entityStaticData.directions);
+                var flyAnimationName: string = "fly-" + direction;
+
+                 if(sprite.animations.currentAnim.name != flyAnimationName )
+                 {
+                     this.manager.updateComponentDataForEntity("Animation",entityId, { animationName: flyAnimationName, initialized:false});
+                 }
 
                 return;
             }

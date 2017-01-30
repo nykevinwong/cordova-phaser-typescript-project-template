@@ -77,10 +77,15 @@ define(["require", "exports", "settings/GameStaticData", "utils/Utils"], functio
             }
         };
         StateProcessor.prototype.processAirCraftState = function (entityStaticData, entityId, state, sprite) {
+            var directionState = this.manager.getComponentDataForEntity("Direction", entityId);
             switch (state.stateName) {
                 case "fly":
                     {
-                        var direction = Utils.Navigation.wrapDirection(Math.round(this.direction), entityStaticData.directions);
+                        var direction = Utils.Navigation.wrapDirection(Math.round(directionState.direction), entityStaticData.directions);
+                        var flyAnimationName = "fly-" + direction;
+                        if (sprite.animations.currentAnim.name != flyAnimationName) {
+                            this.manager.updateComponentDataForEntity("Animation", entityId, { animationName: flyAnimationName, initialized: false });
+                        }
                         return;
                     }
                 default:

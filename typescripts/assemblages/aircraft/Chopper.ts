@@ -16,7 +16,8 @@ var assemblage: Component.Assemblage =
         'Selectable',
         "Type",
         "HealthPoint",
-        "State"        
+        "State",
+        "Direction"        
     ],
     initialState: {
         Displayable: {
@@ -41,6 +42,9 @@ var assemblage: Component.Assemblage =
         },     
         State: {
             stateName: "fly"
+        },
+        Direction: {
+            direction:1,
         }
     }
 };

@@ -155,5 +155,14 @@ declare module Component {
         name: string;
         state: HealthPointState;
     }
+
+    class DirectionState {
+        direction: number;
+    }
+
+    class DirectionComponent implements EntityManager.Component {
+        name: string;
+        state: DirectionState;
+    }
 }
 
