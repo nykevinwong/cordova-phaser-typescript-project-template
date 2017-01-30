@@ -69,7 +69,8 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
                                 }
                             }
                             else if (hpState.hp <= 0) {
-                                lifeCode = "dead";
+                                this.manager.removeEntity(entityId + "");
+                                sprite.kill();
                                 return;
                             }
                             else {

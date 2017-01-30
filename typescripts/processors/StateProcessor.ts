@@ -96,8 +96,8 @@ class StateProcessor implements EntityManager.Processor {
                         }
 
                     } else if (hpState.hp <= 0){
-                        lifeCode = "dead";
-                        // this.game.remove(this);
+                        this.manager.removeEntity(entityId+"");
+                        sprite.kill();         
                         return;                
                     } else {
                         lifeCode = "damaged";
