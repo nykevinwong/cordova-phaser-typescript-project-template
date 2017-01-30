@@ -4,7 +4,7 @@ declare module Component {
 
     type ComponentType = "Displayable" | "Position" | "Anchor" | "Sound" | "Rope" | "Input"|
     "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" | "Type" | "State" |
-    "HealthPoint" ;
+    "HealthPoint" | 'Direction' ;
 
     interface Assemblage {
         name: string;

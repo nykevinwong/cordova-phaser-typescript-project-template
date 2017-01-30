@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "processors/StateProcessor", "processors/HealthBarRenderingProcessor", "processors/PositionProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "components/State", "components/HealthPoint", "components/Direction", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester", "assemblages/buildings/Ground-turret", "assemblages/aircraft/Chopper"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, StateProcessor, HealthBarRenderingProcessor, PositionProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State, HealthPoint, Direction, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage, ChooperAssemblage) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "processors/StateProcessor", "processors/HealthBarRenderingProcessor", "processors/PositionProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "components/State", "components/HealthPoint", "components/Direction", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester", "assemblages/buildings/Ground-turret", "assemblages/aircraft/Chopper", "assemblages/aircraft/Wraith"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, StateProcessor, HealthBarRenderingProcessor, PositionProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State, HealthPoint, Direction, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage, ChooperAssemblage, WraithAssemblage) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -23,7 +23,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.manager.addComponents(components);
             var assemblages = [
                 BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage,
-                ChooperAssemblage
+                ChooperAssemblage, WraithAssemblage
             ];
             this.manager.addAssemblages(assemblages);
         };
@@ -41,6 +41,8 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.manager.updateComponentDataForEntity('Position', baseEntityId5, { x: 560, y: 200 });
             var baseEntityId6 = this.manager.createEntityFromAssemblage('chopper');
             this.manager.updateComponentDataForEntity('Position', baseEntityId6, { x: 160, y: 300 });
+            var baseEntityId7 = this.manager.createEntityFromAssemblage('wraith');
+            this.manager.updateComponentDataForEntity('Position', baseEntityId7, { x: 260, y: 150 });
             this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
             this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
             this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));

@@ -1,4 +1,6 @@
 import EntityManager = require("components/EntityManager");
+
+// processors
 import SwipeProcessor = require("processors/SwipeProcessor");
 import DragDropProcessor = require("processors/DragDropProcessor");
 import RenderingProcessor = require("processors/RenderingProcessor");
@@ -10,6 +12,7 @@ import StateProcessor = require("processors/StateProcessor");
 import HealthBarRenderingProcessor = require("processors/HealthBarRenderingProcessor");
 import PositionProcessor = require("processors/PositionProcessor");
 
+// components
 import Displayable = require("components/Displayable");
 import Position = require("components/Position");
 import DragDrop = require("components/DragDrop");
@@ -22,12 +25,15 @@ import State = require("components/State");
 import HealthPoint = require("components/HealthPoint");
 import Direction = require("components/Direction");
 
+// buildings
 import BaseAssemblage = require("assemblages/buildings/Base")
 import StarPortAssemblage = require("assemblages/buildings/StarPort")
 import HarvesterAssemblage = require("assemblages/buildings/Harvester")
 import GroundTurretAssemblage = require("assemblages/buildings/Ground-turret")
 
+// aircraft
 import ChooperAssemblage = require("assemblages/aircraft/Chopper")
+import WraithAssemblage = require("assemblages/aircraft/Wraith")
 
 class Game extends Phaser.State {
     private manager: EntityManager;
@@ -53,7 +59,7 @@ class Game extends Phaser.State {
         // assemblages is a pre-setup template used to create game entities.
         var assemblages = [
         BaseAssemblage, StarPortAssemblage , HarvesterAssemblage, GroundTurretAssemblage,
-        ChooperAssemblage];
+        ChooperAssemblage, WraithAssemblage];
         this.manager.addAssemblages(assemblages);
 
     }
@@ -83,6 +89,8 @@ class Game extends Phaser.State {
         var baseEntityId6 = this.manager.createEntityFromAssemblage('chopper');
         this.manager.updateComponentDataForEntity('Position', baseEntityId6, { x: 160, y: 300 });
 
+        var baseEntityId7 = this.manager.createEntityFromAssemblage('wraith');
+        this.manager.updateComponentDataForEntity('Position', baseEntityId7, { x: 260, y: 150 });
 
         this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
         this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
