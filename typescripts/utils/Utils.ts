@@ -121,3 +121,51 @@
         }
     }
 
+    export class Navigation
+    {
+        // Finds the angle between two objects in terms of a direction (where 0 <= angle < directions) (assuming we have 8 directions)
+  public static  findAngle(object,unit,directions: number): number{
+     var dy = (object.y) - (unit.y);
+     var dx = (object.x) - (unit.x);
+	//Convert Arctan to value between (0 - 7)
+    var angle = Navigation.wrapDirection(directions/2-(Math.atan2(dx,dy)*directions/(2*Math.PI)),directions);   
+    return angle;    
+ }
+
+ // returns the smallest difference (value ranging between -directions/2 to +directions/2) between two angles (where 0 <= angle < directions)
+public static angleDiff(angle1: number,angle2: number,directions: number):number{
+	if (angle1>=directions/2){
+		angle1 = angle1-directions;
+	}
+	if (angle2>=directions/2){
+		angle2 = angle2-directions;
+	}
+	
+	var diff: number  = angle2-angle1; 
+	
+	if (diff<-directions/2){
+		diff += directions;
+	}
+	if (diff>directions/2){
+		diff -= directions;
+	}
+	
+    return diff;
+}
+
+// Make sure 0 <= direction < directions
+public static  wrapDirection(direction: number,directions: number): number{
+	if (direction<0){
+		direction += directions;
+	}  
+	if (direction >= directions){
+		direction -= directions;
+	}
+	return direction;
+}
+
+
+
+
+    } 
+

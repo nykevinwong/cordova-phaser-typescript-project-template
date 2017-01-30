@@ -189,6 +189,152 @@ define(["require", "exports"], function (require, exports) {
                 }
             ],
             "defaultAnimation": "healthy"
+        },
+        {
+            name: "chopper",
+            cost: 900,
+            pixelWidth: 40,
+            pixelHeight: 40,
+            pixelOffsetX: 20,
+            pixelOffsetY: 20,
+            weaponType: "heatseeker",
+            action: "fly",
+            orders: { type: "float" },
+            radius: 18,
+            sight: 4,
+            canAttack: true,
+            canAttackLand: true,
+            canAttackAir: true,
+            hitPoints: 50,
+            type: "aircraft",
+            direction: 0,
+            directions: 8,
+            "animations": [
+                {
+                    "name": "fly-0",
+                    "frames": [0, 1, 2, 3],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-1",
+                    "frames": [4, 5, 6, 7],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-2",
+                    "frames": [8, 9, 10, 11],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-3",
+                    "frames": [12, 13, 14, 15],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-4",
+                    "frames": [16, 17, 18, 19],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-5",
+                    "frames": [20, 21, 22, 23],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-6",
+                    "frames": [24, 25, 26, 27],
+                    "loop": true,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-7",
+                    "frames": [28, 29, 30, 31],
+                    "loop": true,
+                    "framePerSecond": 10
+                }
+            ],
+            speed: 25,
+            turnSpeed: 4,
+            pixelShadowHeight: 40
+        },
+        {
+            name: "wraith",
+            cost: 600,
+            pixelWidth: 30,
+            pixelHeight: 30,
+            canAttack: true,
+            canAttackLand: false,
+            canAttackAir: true,
+            weaponType: "fireball",
+            action: "fly",
+            orders: { type: "float" },
+            pixelOffsetX: 15,
+            pixelOffsetY: 15,
+            radius: 15,
+            sight: 8,
+            speed: 40,
+            turnSpeed: 4,
+            hitPoints: 50,
+            type: "aircraft",
+            direction: 0,
+            directions: 8,
+            "animations": [
+                {
+                    "name": "fly-0",
+                    "frames": [0],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-1",
+                    "frames": [1],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-2",
+                    "frames": [2],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-3",
+                    "frames": [3],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-4",
+                    "frames": [4],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-5",
+                    "frames": [5],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-6",
+                    "frames": [6],
+                    "loop": false,
+                    "framePerSecond": 10
+                },
+                {
+                    "name": "fly-7",
+                    "frames": [7],
+                    "loop": false,
+                    "framePerSecond": 10
+                }
+            ],
+            pixelShadowHeight: 40
         }
     ];
     function LoadGameData(key) {

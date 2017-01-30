@@ -1,4 +1,4 @@
-define(["require", "exports", "settings/GameStaticData"], function (require, exports, GameStaticData) {
+define(["require", "exports", "settings/GameStaticData", "utils/Utils"], function (require, exports, GameStaticData, Utils) {
     "use strict";
     var StateProcessor = (function () {
         function StateProcessor(manager, game) {
@@ -17,6 +17,31 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
         };
         StateProcessor.prototype.processBuildingState = function (entityStaticData, entityId, state, sprite) {
             switch (state.stateName) {
+                case "stand":
+                    {
+                        if (this.manager.entityHasComponent(entityId, "HealthPoint")) {
+                            var hpState = this.manager.getComponentDataForEntity("HealthPoint", entityId);
+                            var lifeCode = "healthy";
+                            if (hpState.hp > entityStaticData.hitPoints * 0.4) {
+                                lifeCode = "healthy";
+                                if (sprite.animations.currentAnim.name != "healthy") {
+                                    this.manager.updateComponentDataForEntity("Animation", entityId, { animationName: "healthy", initialized: false });
+                                }
+                            }
+                            else if (hpState.hp <= 0) {
+                                this.manager.removeEntity(entityId + "");
+                                sprite.kill();
+                                return;
+                            }
+                            else {
+                                lifeCode = "damaged";
+                                if (sprite.animations.currentAnim.name != "damaged") {
+                                    this.manager.updateComponentDataForEntity("Animation", entityId, { animationName: "damaged", initialized: false });
+                                }
+                            }
+                        }
+                        return;
+                    }
                 case "teleport":
                     {
                         return;
@@ -51,40 +76,37 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
                     }
             }
         };
+        StateProcessor.prototype.processAirCraftState = function (entityStaticData, entityId, state, sprite) {
+            switch (state.stateName) {
+                case "fly":
+                    {
+                        var direction = Utils.Navigation.wrapDirection(Math.round(this.direction), entityStaticData.directions);
+                        return;
+                    }
+                default:
+                    {
+                        return;
+                    }
+            }
+        };
         StateProcessor.prototype.processState = function (entityId, state) {
             var typeState = this.manager.getComponentDataForEntity("Type", entityId);
             var entityStaticData = GameStaticData(typeState.type);
             var displayableState = this.manager.getComponentDataForEntity("Displayable", entityId);
             var sprite = displayableState.spriteReference;
-            switch (state.stateName) {
-                case "stand":
+            switch (entityStaticData.type) {
+                case "building":
                     {
-                        if (this.manager.entityHasComponent(entityId, "HealthPoint")) {
-                            var hpState = this.manager.getComponentDataForEntity("HealthPoint", entityId);
-                            var lifeCode = "healthy";
-                            if (hpState.hp > entityStaticData.hitPoints * 0.4) {
-                                lifeCode = "healthy";
-                                if (sprite.animations.currentAnim.name != "healthy") {
-                                    this.manager.updateComponentDataForEntity("Animation", entityId, { animationName: "healthy", initialized: false });
-                                }
-                            }
-                            else if (hpState.hp <= 0) {
-                                this.manager.removeEntity(entityId + "");
-                                sprite.kill();
-                                return;
-                            }
-                            else {
-                                lifeCode = "damaged";
-                                if (sprite.animations.currentAnim.name != "damaged") {
-                                    this.manager.updateComponentDataForEntity("Animation", entityId, { animationName: "damaged", initialized: false });
-                                }
-                            }
-                        }
+                        this.processBuildingState(entityStaticData, entityId, state, sprite);
+                        return;
+                    }
+                case "aircraft":
+                    {
+                        this.processAirCraftState(entityStaticData, entityId, state, sprite);
                         return;
                     }
                 default:
                     {
-                        this.processBuildingState(entityStaticData, entityId, state, sprite);
                         return;
                     }
             }

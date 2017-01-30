@@ -75,4 +75,41 @@ define(["require", "exports"], function (require, exports) {
         return ScreenUtils;
     }());
     exports.ScreenUtils = ScreenUtils;
+    var Navigation = (function () {
+        function Navigation() {
+        }
+        Navigation.findAngle = function (object, unit, directions) {
+            var dy = (object.y) - (unit.y);
+            var dx = (object.x) - (unit.x);
+            var angle = Navigation.wrapDirection(directions / 2 - (Math.atan2(dx, dy) * directions / (2 * Math.PI)), directions);
+            return angle;
+        };
+        Navigation.angleDiff = function (angle1, angle2, directions) {
+            if (angle1 >= directions / 2) {
+                angle1 = angle1 - directions;
+            }
+            if (angle2 >= directions / 2) {
+                angle2 = angle2 - directions;
+            }
+            var diff = angle2 - angle1;
+            if (diff < -directions / 2) {
+                diff += directions;
+            }
+            if (diff > directions / 2) {
+                diff -= directions;
+            }
+            return diff;
+        };
+        Navigation.wrapDirection = function (direction, directions) {
+            if (direction < 0) {
+                direction += directions;
+            }
+            if (direction >= directions) {
+                direction -= directions;
+            }
+            return direction;
+        };
+        return Navigation;
+    }());
+    exports.Navigation = Navigation;
 });

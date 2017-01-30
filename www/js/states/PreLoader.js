@@ -34,6 +34,8 @@ define(["require", "exports", "../GlobalEntityManager", "processors/InputProcess
             this.game.load.spritesheet('starport', 'assets/gfx/buildings/starport.png', 40, 60);
             this.game.load.spritesheet('harvester', 'assets/gfx/buildings/harvester.png', 40, 60);
             this.game.load.spritesheet('ground-turret', 'assets/gfx/buildings/ground-turret.png', 38, 32);
+            this.game.load.spritesheet('chopper', 'assets/gfx/aircraft/chopper.png', 40, 40);
+            this.game.load.spritesheet('wraith', 'assets/gfx/aircraft/wraith.png', 30, 30);
         };
         PreLoader.prototype.create = function () {
             this.add.tween(this.background)

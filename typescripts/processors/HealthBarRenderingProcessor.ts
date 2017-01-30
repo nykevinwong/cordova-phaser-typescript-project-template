@@ -49,9 +49,9 @@ class HealthBarRenderingProcessor implements EntityManager.Processor {
                             color: '#00EE00'
                         },
                         percent: currentPrecentage,
-                        width: json.baseWidth,
+                        width: json.pixelWidth,
                         height: 6,
-                        x: posState.x - this.game.camera.x - this.game.world.x+ json.baseWidth/2 , 
+                        x: posState.x - this.game.camera.x - this.game.world.x+ json.pixelWidth/2 , 
                         y: posState.y - this.game.camera.y - this.game.world.y};
 
                         // ToDO: HealthBar Performance can be improved. background box can be a hollow box.
