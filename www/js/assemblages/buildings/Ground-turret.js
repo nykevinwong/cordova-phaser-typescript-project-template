@@ -7,10 +7,12 @@ define(["require", "exports"], function (require, exports) {
             'Displayable',
             'Position',
             'DragDrop',
+            'Animation',
             'AnimationSet',
             'Group',
             'Selectable',
-            "Type"
+            "Type",
+            "State"
         ],
         initialState: {
             Displayable: {
@@ -23,8 +25,15 @@ define(["require", "exports"], function (require, exports) {
             AnimationSet: {
                 setName: 'ground-turret'
             },
+            Animation: {
+                animationName: "healthy",
+                initialized: false
+            },
             Type: {
                 type: "ground-turret"
+            },
+            State: {
+                stateName: "stand"
             }
         }
     };

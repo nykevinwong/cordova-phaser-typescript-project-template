@@ -7,11 +7,13 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
             'Displayable',
             'Position',
             'DragDrop',
+            'Animation',
             'AnimationSet',
             'Group',
             'Selectable',
             "Type",
-            'HealthPoint'
+            'HealthPoint',
+            "State"
         ],
         initialState: {
             Displayable: {
@@ -24,11 +26,18 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
             AnimationSet: {
                 setName: 'base'
             },
+            Animation: {
+                animationName: "healthy",
+                initialized: false
+            },
             Type: {
                 type: "base",
             },
             HealthPoint: {
                 hp: GameStaticData("base").hitPoints
+            },
+            State: {
+                stateName: "stand"
             }
         }
     };

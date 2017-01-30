@@ -10,12 +10,13 @@ var assemblage: Component.Assemblage =
             'Displayable',
             'Position',
             'DragDrop',
-    //        'Animation',
+            'Animation',
             'AnimationSet',
             'Group',
             'Selectable',
             "Type",
-            'HealthPoint'
+            'HealthPoint',
+            "State"
         ],
         initialState: {
             Displayable: {
@@ -28,12 +29,19 @@ var assemblage: Component.Assemblage =
             AnimationSet: {
                 setName: 'base'
             },
+            Animation: {
+                animationName: "healthy",
+                initialized:false
+            },
             Type: {
                 type: "base", // GameStaticData("base").type /// not working. should use .name, .type means "building"
             },
             HealthPoint: {
                 hp: GameStaticData("base").hitPoints               
-            }            
+            },            
+            State: {
+                stateName: "stand"
+            }
         }
     };
 

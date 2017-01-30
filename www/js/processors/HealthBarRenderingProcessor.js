@@ -26,19 +26,20 @@ define(["require", "exports", "settings/GameStaticData", "utils/HealthBar"], fun
                     var currentPrecentage = healthPointState.hp / json.hitPoints;
                     var barConfig = {
                         bg: {
-                            color: '#550000'
+                            color: '#EE0000'
                         },
                         bar: {
                             color: '#00EE00'
                         },
                         percent: currentPrecentage,
-                        width: 32,
-                        height: 3,
+                        width: json.baseWidth,
+                        height: 6,
                         x: posState.x - this.game.camera.x - this.game.world.x + json.baseWidth / 2,
                         y: posState.y - this.game.camera.y - this.game.world.y
                     };
                     var bar = new HealthBar(this.game, barConfig);
                     this.healthBars.push(bar);
+                    break;
                 }
             }
         };

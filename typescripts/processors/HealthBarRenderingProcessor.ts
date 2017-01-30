@@ -53,8 +53,11 @@ class HealthBarRenderingProcessor implements EntityManager.Processor {
                         height: 6,
                         x: posState.x - this.game.camera.x - this.game.world.x+ json.baseWidth/2 , 
                         y: posState.y - this.game.camera.y - this.game.world.y};
+
+                        // ToDO: HealthBar Performance can be improved. background box can be a hollow box.
                     var bar: HealthBar = new HealthBar(this.game, barConfig);
                     this.healthBars.push(bar);
+                    break;
                 }
             }
 

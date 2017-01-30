@@ -76,6 +76,10 @@ define(["require", "exports"], function (require, exports) {
                         this.manager.entityHasComponent(+entityId, 'Type')) {
                         var typeState = this.manager.getComponentDataForEntity('Type', +entityId);
                         var description = this.getDescription(typeState.type);
+                        if (this.manager.entityHasComponent(+entityId, 'State')) {
+                            var stateState = this.manager.getComponentDataForEntity('State', +entityId);
+                            description += " currentState:" + stateState.stateName;
+                        }
                         this.text.setText(description);
                         this.text.visible = true;
                         break;

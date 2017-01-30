@@ -112,10 +112,18 @@ class SelectableProcessor implements EntityManager.Processor {
             for (var entityId in selectableStates) {
                 var selectableState: Component.SelectableState = selectableStates[entityId];
 
+                // enable for one selection only
                 if (selectableState.selected &&
                     this.manager.entityHasComponent(+entityId, 'Type')) {
                     var typeState: Component.TypeState = this.manager.getComponentDataForEntity('Type', +entityId);
                     var description : string = this.getDescription(typeState.type)
+
+                    if(this.manager.entityHasComponent(+entityId, 'State'))
+                    {
+                        var stateState : Component.StateState = this.manager.getComponentDataForEntity('State', +entityId);
+                        description += " currentState:" + stateState.stateName;
+                    }
+
                     this.text.setText(description);
                     this.text.visible = true;
                     break;

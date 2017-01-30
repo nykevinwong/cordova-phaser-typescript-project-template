@@ -84,6 +84,32 @@ class Game extends Phaser.State {
         this.manager.addProcessor(new SelectableProcessor(this.manager, this.game));
         this.manager.addProcessor(new PositionProcessor(this.manager, this.game));
         
+        var NumPadAddKey = this.game.input.keyboard.addKey(Phaser.Keyboard.NUMPAD_ADD);
+        var NumPadSubtractKey = this.game.input.keyboard.addKey(Phaser.Keyboard.NUMPAD_SUBTRACT);
+        this.baseEntityId = baseEntityId;
+        
+        NumPadAddKey.onDown.add(function()
+        {
+            var g :Game = this;
+            var hpState: Component.HealthPointState =  g.manager.getComponentDataForEntity("HealthPoint", g.baseEntityId);
+            hpState.hp +=100;
+            
+            g.manager.updateComponentDataForEntity("HealthPoint", g.baseEntityId, hpState);
+
+        }, this); 
+
+        NumPadSubtractKey.onDown.add(function()
+        {
+            var g :Game = this;
+            var hpState: Component.HealthPointState =  g.manager.getComponentDataForEntity("HealthPoint", g.baseEntityId);
+            
+            hpState.hp -=100;
+            if(hpState.hp<=0) hpState.hp = 0;
+
+            g.manager.updateComponentDataForEntity("HealthPoint", g.baseEntityId, hpState);
+
+        }, this); 
+
     }
 
     update() {

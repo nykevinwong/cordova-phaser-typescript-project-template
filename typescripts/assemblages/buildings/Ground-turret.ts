@@ -9,11 +9,12 @@ var assemblage: Component.Assemblage =
         'Displayable',
         'Position',
         'DragDrop',
-//        'Animation',
+        'Animation',
         'AnimationSet',
         'Group',
         'Selectable',
-        "Type"        
+        "Type",
+        "State"      
     ],
     initialState: {
         Displayable: {
@@ -26,8 +27,15 @@ var assemblage: Component.Assemblage =
         AnimationSet: {
             setName: 'ground-turret'
         },
+        Animation: {
+            animationName: "healthy",
+            initialized:false
+        },
         Type : {
             type:"ground-turret"
+        },
+        State: {
+            stateName: "stand"
         }
     }
 };

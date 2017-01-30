@@ -20,7 +20,7 @@ var GameStaticData =
                 [1, 1]
             ],
             "sight": 3,
-            "hitPoints": 500,
+            "hitPoints": 1000,
             "cost": 5000,
             "type": "building",
             "animations": [
