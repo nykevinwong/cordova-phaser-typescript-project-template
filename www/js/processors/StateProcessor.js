@@ -76,7 +76,7 @@ define(["require", "exports", "settings/GameStaticData", "utils/Utils"], functio
                     }
             }
         };
-        StateProcessor.prototype.processAirCraftState = function (entityStaticData, entityId, state, sprite) {
+        StateProcessor.prototype.processAircraftState = function (entityStaticData, entityId, state, sprite) {
             var directionState = this.manager.getComponentDataForEntity("Direction", entityId);
             switch (state.stateName) {
                 case "fly":
@@ -107,7 +107,7 @@ define(["require", "exports", "settings/GameStaticData", "utils/Utils"], functio
                     }
                 case "aircraft":
                     {
-                        this.processAirCraftState(entityStaticData, entityId, state, sprite);
+                        this.processAircraftState(entityStaticData, entityId, state, sprite);
                         return;
                     }
                 default:

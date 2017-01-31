@@ -23,11 +23,16 @@ class PositionProcessor implements EntityManager.Processor {
                 var sprite: Phaser.Sprite = displayableData.spriteReference;
                 var posState : Component.PositionState = this.manager.getComponentDataForEntity('Position', +entityId);
 
-                posState.x = sprite.x;
+          /*      posState.x = sprite.x;
                 posState.y = sprite.y;
 
                 this.manager.updateComponentDataForEntity('Position', +entityId, posState);
-            }
+                */
+                sprite.x = posState.x;
+                sprite.y = posState.y;
+               // this.manager.updateComponentDataForEntity('Displayable', +entityId, posState);
+                
+        }
 
         }
     }

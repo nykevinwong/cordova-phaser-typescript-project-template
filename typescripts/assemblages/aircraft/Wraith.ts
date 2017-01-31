@@ -17,7 +17,8 @@ var assemblage: Component.Assemblage =
         "Type",
         "HealthPoint",
         "State",
-        "Direction"        
+        "Direction",
+        "Orders"        
     ],
     initialState: {
         Displayable: {
@@ -45,6 +46,9 @@ var assemblage: Component.Assemblage =
         },
         Direction: {
             direction:3,
+        },
+        Orders: {
+            type: "move"
         }
     }
 };

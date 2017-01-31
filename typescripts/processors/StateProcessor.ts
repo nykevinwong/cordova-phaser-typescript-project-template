@@ -104,7 +104,7 @@ class StateProcessor implements EntityManager.Processor {
 
     }
 
-    processAirCraftState(entityStaticData: any, entityId: number, state: Component.StateState, sprite: Phaser.Sprite)
+    processAircraftState(entityStaticData: any, entityId: number, state: Component.StateState, sprite: Phaser.Sprite)
     {
         var directionState:Component.DirectionState = this.manager.getComponentDataForEntity("Direction", entityId)
 
@@ -145,7 +145,7 @@ class StateProcessor implements EntityManager.Processor {
              }
              case "aircraft":
              {
-                 this.processAirCraftState(entityStaticData, entityId, state, sprite);
+                 this.processAircraftState(entityStaticData, entityId, state, sprite);
                  return;
              }
              default:

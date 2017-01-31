@@ -14,7 +14,8 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
             "Type",
             "HealthPoint",
             "State",
-            "Direction"
+            "Direction",
+            "Orders"
         ],
         initialState: {
             Displayable: {
@@ -42,6 +43,9 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
             },
             Direction: {
                 direction: 1,
+            },
+            Orders: {
+                type: "move"
             }
         }
     };

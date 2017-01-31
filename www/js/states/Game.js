@@ -3,7 +3,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "processors/StateProcessor", "processors/HealthBarRenderingProcessor", "processors/PositionProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "components/State", "components/HealthPoint", "components/Direction", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester", "assemblages/buildings/Ground-turret", "assemblages/aircraft/Chopper", "assemblages/aircraft/Wraith"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, StateProcessor, HealthBarRenderingProcessor, PositionProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State, HealthPoint, Direction, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage, ChooperAssemblage, WraithAssemblage) {
+define(["require", "exports", "components/EntityManager", "processors/SwipeProcessor", "processors/DragDropProcessor", "processors/RenderingProcessor", "processors/TileMapProcessor", "processors/AnimationProcessor", "processors/GroupProcessor", "processors/SelectableProcessor", "processors/StateProcessor", "processors/HealthBarRenderingProcessor", "processors/PositionProcessor", "processors/OrdersProcessor", "components/Displayable", "components/Position", "components/DragDrop", "components/Animation", "components/AnimationSet", "components/Group", "components/Selectable", "components/Type", "components/State", "components/HealthPoint", "components/Direction", "components/Orders", "assemblages/buildings/Base", "assemblages/buildings/StarPort", "assemblages/buildings/Harvester", "assemblages/buildings/Ground-turret", "assemblages/aircraft/Chopper", "assemblages/aircraft/Wraith"], function (require, exports, EntityManager, SwipeProcessor, DragDropProcessor, RenderingProcessor, TileMapProcessor, AnimationProcessor, GroupProcessor, SelectableProcessor, StateProcessor, HealthBarRenderingProcessor, PositionProcessor, OrdersProcessor, Displayable, Position, DragDrop, Animation, AnimationSet, Group, Selectable, Type, State, HealthPoint, Direction, Orders, BaseAssemblage, StarPortAssemblage, HarvesterAssemblage, GroundTurretAssemblage, ChooperAssemblage, WraithAssemblage) {
     "use strict";
     var Game = (function (_super) {
         __extends(Game, _super);
@@ -18,7 +18,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             var components = [
                 Displayable, Position, DragDrop, Animation,
                 AnimationSet, Group, Selectable, Type,
-                State, HealthPoint, Direction
+                State, HealthPoint, Direction, Orders
             ];
             this.manager.addComponents(components);
             var assemblages = [
@@ -52,6 +52,7 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.manager.addProcessor(new StateProcessor(this.manager, this.game));
             this.manager.addProcessor(new GroupProcessor(this.manager, this.game));
             this.manager.addProcessor(new SelectableProcessor(this.manager, this.game));
+            this.manager.addProcessor(new OrdersProcessor(this.manager, this.game));
             this.manager.addProcessor(new PositionProcessor(this.manager, this.game));
             var NumPadAddKey = this.game.input.keyboard.addKey(Phaser.Keyboard.NUMPAD_ADD);
             var NumPadSubtractKey = this.game.input.keyboard.addKey(Phaser.Keyboard.NUMPAD_SUBTRACT);

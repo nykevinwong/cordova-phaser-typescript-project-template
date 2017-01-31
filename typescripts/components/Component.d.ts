@@ -4,7 +4,7 @@ declare module Component {
 
     type ComponentType = "Displayable" | "Position" | "Anchor" | "Sound" | "Rope" | "Input"|
     "DragDrop"|"Animation" | "AnimationSet" | "Selectable" | "Group" | "Type" | "State" |
-    "HealthPoint" | 'Direction' ;
+    "HealthPoint" | 'Direction' | "Destination" | "Orders" ;
 
     interface Assemblage {
         name: string;
@@ -163,6 +163,25 @@ declare module Component {
     class DirectionComponent implements EntityManager.Component {
         name: string;
         state: DirectionState;
+    }
+
+    class OrdersState {
+        type: string;
+    }
+
+    class OrdersComponent implements EntityManager.Component {
+        name: string;
+        state: OrdersState;
+    }
+
+    class DestinationState {
+        x: number;
+        y: number;
+    }
+
+    class DestinationComponent implements EntityManager.Component {
+        name: string;
+        state: DestinationState;
     }
 }
 

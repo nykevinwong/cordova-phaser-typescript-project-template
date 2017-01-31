@@ -11,6 +11,7 @@ import SelectableProcessor = require("processors/SelectableProcessor");
 import StateProcessor = require("processors/StateProcessor");
 import HealthBarRenderingProcessor = require("processors/HealthBarRenderingProcessor");
 import PositionProcessor = require("processors/PositionProcessor");
+import OrdersProcessor = require("processors/OrdersProcessor");
 
 // components
 import Displayable = require("components/Displayable");
@@ -24,6 +25,7 @@ import Type = require("components/Type");
 import State = require("components/State");
 import HealthPoint = require("components/HealthPoint");
 import Direction = require("components/Direction");
+import Orders  = require("components/Orders");
 
 // buildings
 import BaseAssemblage = require("assemblages/buildings/Base")
@@ -53,7 +55,7 @@ class Game extends Phaser.State {
         var components: EntityManager.Component[] = [
             Displayable, Position, DragDrop, Animation, 
             AnimationSet, Group, Selectable, Type, 
-            State, HealthPoint, Direction];
+            State, HealthPoint, Direction, Orders];
         this.manager.addComponents(components);
 
         // assemblages is a pre-setup template used to create game entities.
@@ -101,6 +103,7 @@ class Game extends Phaser.State {
         this.manager.addProcessor(new StateProcessor(this.manager, this.game));
         this.manager.addProcessor(new GroupProcessor(this.manager, this.game));
         this.manager.addProcessor(new SelectableProcessor(this.manager, this.game));
+        this.manager.addProcessor(new OrdersProcessor(this.manager, this.game));
         this.manager.addProcessor(new PositionProcessor(this.manager, this.game));
         
         var NumPadAddKey = this.game.input.keyboard.addKey(Phaser.Keyboard.NUMPAD_ADD);

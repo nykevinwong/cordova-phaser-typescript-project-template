@@ -335,6 +335,82 @@ define(["require", "exports"], function (require, exports) {
                 }
             ],
             pixelShadowHeight: 40
+        },
+        {
+            name: "transport",
+            pixelWidth: 31,
+            pixelHeight: 30,
+            pixelOffsetX: 15,
+            pixelOffsetY: 15,
+            radius: 15,
+            speed: 15,
+            sight: 3,
+            cost: 400,
+            hitPoints: 100,
+            type: "vehicle",
+            turnSpeed: 2,
+            spriteImages: [
+                { name: "stand", count: 1, directions: 8 }
+            ],
+        },
+        {
+            name: "harvester car",
+            pixelWidth: 21,
+            pixelHeight: 20,
+            pixelOffsetX: 10,
+            pixelOffsetY: 10,
+            radius: 10,
+            speed: 10,
+            sight: 3,
+            cost: 1600,
+            hitPoints: 50,
+            type: "vehicle",
+            turnSpeed: 2,
+            spriteImages: [
+                { name: "stand", count: 1, directions: 8 }
+            ],
+        },
+        {
+            name: "scout-tank",
+            canAttack: true,
+            canAttackLand: true,
+            canAttackAir: false,
+            weaponType: "bullet",
+            pixelWidth: 21,
+            pixelHeight: 21,
+            pixelOffsetX: 10,
+            pixelOffsetY: 10,
+            radius: 11,
+            speed: 20,
+            sight: 3,
+            cost: 500,
+            hitPoints: 50,
+            type: "vehicle",
+            turnSpeed: 4,
+            spriteImages: [
+                { name: "stand", count: 1, directions: 8 }
+            ],
+        },
+        {
+            name: "heavy-tank",
+            canAttack: true,
+            canAttackLand: true,
+            canAttackAir: false,
+            weaponType: "cannon-ball",
+            pixelWidth: 30,
+            pixelHeight: 30,
+            pixelOffsetX: 15,
+            pixelOffsetY: 15,
+            radius: 13,
+            speed: 15,
+            sight: 4,
+            cost: 1200,
+            hitPoints: 50,
+            type: "vehicle",
+            turnSpeed: 4,
+            spriteImages: [
+                { name: "stand", count: 1, directions: 8 }
+            ],
         }
     ];
     function LoadGameData(key) {
