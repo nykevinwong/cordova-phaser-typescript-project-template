@@ -6,7 +6,6 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
         components: [
             'Displayable',
             'Position',
-            'DragDrop',
             'Animation',
             'AnimationSet',
             'Group',

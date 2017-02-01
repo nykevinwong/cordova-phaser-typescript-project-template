@@ -154,7 +154,7 @@ public static angleDiff(angle1: number,angle2: number,directions: number):number
 }
 
 // Make sure 0 <= direction < directions
-public static  wrapDirection(direction: number,directions: number): number{
+public static  wrapDirection(direction: number,directions: number): number {
 	if (direction<0){
 		direction += directions;
 	}  
@@ -164,8 +164,10 @@ public static  wrapDirection(direction: number,directions: number): number{
 	return direction;
 }
 
+public static isInSourceRadius(src, target, radius: number, gridSize: number) {
+    var isInSourceRadius : boolean = (Math.pow(target.x-src.x,2) + Math.pow(target.y-src.y,2)) < Math.pow(radius/gridSize,2);
+    return isInSourceRadius;
+}
 
-
-
-    } 
+} 
 

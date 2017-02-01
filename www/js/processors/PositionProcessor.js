@@ -12,8 +12,15 @@ define(["require", "exports"], function (require, exports) {
                 if (displayableData.spriteReference != null) {
                     var sprite = displayableData.spriteReference;
                     var posState = this.manager.getComponentDataForEntity('Position', +entityId);
-                    sprite.x = posState.x;
-                    sprite.y = posState.y;
+                    if (this.manager.entityHasComponent(+entityId, "DragDrop")) {
+                        posState.x = sprite.x;
+                        posState.y = sprite.y;
+                        this.manager.updateComponentDataForEntity('Position', +entityId, posState);
+                    }
+                    else {
+                        sprite.x = posState.x;
+                        sprite.y = posState.y;
+                    }
                 }
             }
         };

@@ -50,7 +50,15 @@ define(["require", "exports", "settings/GameStaticData", "utils/Utils"], functio
                     return;
                 case "move":
                     {
-                        this.move(entityId, entityStaticData, { x: 400, y: 400 });
+                        var posState = this.manager.getComponentDataForEntity("Position", entityId);
+                        var target = { x: 500, y: 300 };
+                        var radius = entityStaticData.radius;
+                        if (Utils.Navigation.isInSourceRadius(posState, target, radius, 20)) {
+                            orders.type = "float";
+                        }
+                        else {
+                            this.move(entityId, entityStaticData, target);
+                        }
                     }
                     return;
                 default:

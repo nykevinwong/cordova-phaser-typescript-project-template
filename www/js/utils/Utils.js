@@ -109,6 +109,10 @@ define(["require", "exports"], function (require, exports) {
             }
             return direction;
         };
+        Navigation.isInSourceRadius = function (src, target, radius, gridSize) {
+            var isInSourceRadius = (Math.pow(target.x - src.x, 2) + Math.pow(target.y - src.y, 2)) < Math.pow(radius / gridSize, 2);
+            return isInSourceRadius;
+        };
         return Navigation;
     }());
     exports.Navigation = Navigation;

@@ -43,6 +43,10 @@ define(["require", "exports", "components/EntityManager", "processors/SwipeProce
             this.manager.updateComponentDataForEntity('Position', baseEntityId6, { x: 160, y: 300 });
             var baseEntityId7 = this.manager.createEntityFromAssemblage('wraith');
             this.manager.updateComponentDataForEntity('Position', baseEntityId7, { x: 260, y: 150 });
+            var baseEntityId8 = this.manager.createEntityFromAssemblage('wraith');
+            this.manager.updateComponentDataForEntity('Position', baseEntityId8, { x: 760, y: 10 });
+            var baseEntityId9 = this.manager.createEntityFromAssemblage('chopper');
+            this.manager.updateComponentDataForEntity('Position', baseEntityId9, { x: 160, y: 10 });
             this.manager.addProcessor(new TileMapProcessor(this.manager, this.game));
             this.manager.addProcessor(new SwipeProcessor(this.manager, this.game, this.game));
             this.manager.addProcessor(new RenderingProcessor(this.manager, this.game));
