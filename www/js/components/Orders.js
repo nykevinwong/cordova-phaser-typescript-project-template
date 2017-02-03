@@ -3,7 +3,8 @@ define(["require", "exports"], function (require, exports) {
     var StateComponent = {
         name: 'Orders',
         state: {
-            type: null
+            type: null,
+            target: null
         }
     };
     return StateComponent;

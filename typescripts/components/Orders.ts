@@ -3,7 +3,8 @@
 var StateComponent : Component.OrdersComponent = {
     name: 'Orders',
     state: {
-        type: null
+        type: null,
+        target: null
     }
 };
 

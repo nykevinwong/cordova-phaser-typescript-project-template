@@ -30,18 +30,18 @@ define(["require", "exports"], function (require, exports) {
                             var offestX = this.game.camera.x % mapTileWidth;
                             var offestY = this.game.camera.y % mapTileHeight;
                             sprite.input.enableSnap(mapTileWidth, mapTileHeight, true, true, offestX, offestY);
-                            if (typeof this.game.kineticScrolling != 'undefined') {
-                                sprite.events.onDragStart.add(function (sprite, pointer) {
-                                    if (typeof this.game.kineticScrolling != 'undefined') {
-                                        this.game.kineticScrolling.stop();
-                                    }
-                                }, this);
-                                sprite.events.onDragStop.add(function (sprite, pointer) {
-                                    if (typeof this.game.kineticScrolling != 'undefined') {
-                                        this.game.kineticScrolling.start();
-                                    }
-                                }, this);
-                            }
+                        }
+                        if (typeof this.game.kineticScrolling != 'undefined') {
+                            sprite.events.onDragStart.add(function (sprite, pointer) {
+                                if (typeof this.game.kineticScrolling != 'undefined') {
+                                    this.game.kineticScrolling.stop();
+                                }
+                            }, this);
+                            sprite.events.onDragStop.add(function (sprite, pointer) {
+                                if (typeof this.game.kineticScrolling != 'undefined') {
+                                    this.game.kineticScrolling.start();
+                                }
+                            }, this);
                         }
                         this.manager.updateComponentDataForEntity('DragDrop', +entityId, { initialized: true });
                     }

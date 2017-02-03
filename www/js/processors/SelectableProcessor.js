@@ -13,6 +13,7 @@ define(["require", "exports"], function (require, exports) {
                 if (this.manager.entityHasComponent(+entityId, 'Displayable')) {
                     var displayableState = this.manager.getComponentDataForEntity('Displayable', +entityId);
                     var sprite = displayableState.spriteReference;
+                    sprite.inputEnabled = true;
                     sprite.events.onInputDown.add(function () {
                         var state = this.state;
                         state.selected = !state.selected;

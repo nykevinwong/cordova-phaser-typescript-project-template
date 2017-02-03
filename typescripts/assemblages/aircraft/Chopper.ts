@@ -9,7 +9,7 @@ var assemblage: Component.Assemblage =
     components: [
         'Displayable',
         'Position',
-//        'DragDrop',
+  //      'DragDrop',
         'Animation',
         'AnimationSet',
         'Group',
@@ -48,7 +48,8 @@ var assemblage: Component.Assemblage =
             direction:1,
         },
         Orders: {
-            type: "move"
+            type: "float",
+            target: null
         }
     }
 };

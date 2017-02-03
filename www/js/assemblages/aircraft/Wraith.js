@@ -44,7 +44,8 @@ define(["require", "exports", "settings/GameStaticData"], function (require, exp
                 direction: 3,
             },
             Orders: {
-                type: "move"
+                type: "float",
+                target: null
             }
         }
     };

@@ -24,7 +24,7 @@ class SelectableProcessor implements EntityManager.Processor {
             if (this.manager.entityHasComponent(+entityId, 'Displayable')) {
                 var displayableState: Component.DisplayableState = this.manager.getComponentDataForEntity('Displayable', +entityId);
                 var sprite: Phaser.Sprite = displayableState.spriteReference;
-
+                sprite.inputEnabled = true;
                 sprite.events.onInputDown.add(function () {
                     var state: Component.SelectableState = this.state;
                     state.selected = !state.selected;
@@ -102,7 +102,7 @@ class SelectableProcessor implements EntityManager.Processor {
             this.createSelectableEventHandler();
 
              this.game.input.onDown.add(function () {
-            this.visible = false;
+                 this.visible = false;
              }, this.text);
 
         }

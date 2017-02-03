@@ -44,7 +44,10 @@ class DragDropProcessor implements EntityManager.Processor {
                         //  The snap is set to every 32x32 pixels.
                         var offestX = this.game.camera.x % mapTileWidth;
                         var offestY = this.game.camera.y % mapTileHeight;
+
+                        
                         sprite.input.enableSnap(mapTileWidth, mapTileHeight, true, true, offestX, offestY);
+                     }
 
                         if (typeof this.game.kineticScrolling != 'undefined') {
 
@@ -63,7 +66,6 @@ class DragDropProcessor implements EntityManager.Processor {
 
                             }, this);
                         }
-                    }
 
                     this.manager.updateComponentDataForEntity('DragDrop', +entityId, { initialized: true });
                 }

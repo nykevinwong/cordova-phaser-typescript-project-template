@@ -11,6 +11,31 @@ class OrdersProcessor implements EntityManager.Processor {
     constructor(manager: EntityManager, game: Phaser.Game) {
         this.manager = manager;
         this.game = game;
+
+        this.init();
+    }
+
+    init(): void {
+        this.game.input.onDown.add(function (){
+
+            var selectableStates: Component.SelectableState[] = this.manager.getComponentsData('Selectable');
+
+            for (var entityId in selectableStates) {
+                var selectableState: Component.SelectableState = selectableStates[entityId];
+
+                // enable for one selection only
+                if (selectableState.selected &&
+                    this.manager.entityHasComponent(+entityId, 'Orders')) {
+                    var orders: Component.OrdersState = this.manager.getComponentDataForEntity("Orders",+entityId);      
+                    orders.type = "move";
+                    var x1 = this.game.input.x;
+                    var y1 = this.game.input.y;
+                    orders.target = {x: x1, y: y1};
+                    this.manager.updateComponentDataForEntity("Orders",entityId, orders);
+                }
+            }
+
+        },this);
     }
 
     processOrders(): void {
@@ -71,12 +96,13 @@ class OrdersProcessor implements EntityManager.Processor {
             case "move":
             {
                 var posState : Component.PositionState = this.manager.getComponentDataForEntity("Position",entityId);
-                var target =  {x:500, y:300};
+                var target =  orders.target;
                 var radius:number = entityStaticData.radius;
                 
                 if(Utils.Navigation.isInSourceRadius(posState, target, radius ,20 ) ) 
                 {
                     orders.type = "float";
+                    orders.target = null;
                 } 
                 else 
                 {

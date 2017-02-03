@@ -167,6 +167,7 @@ declare module Component {
 
     class OrdersState {
         type: string;
+        target: {x: 0, y:0}
     }
 
     class OrdersComponent implements EntityManager.Component {

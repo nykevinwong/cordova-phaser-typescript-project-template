@@ -4,7 +4,25 @@ define(["require", "exports", "settings/GameStaticData", "utils/Utils"], functio
         function OrdersProcessor(manager, game) {
             this.manager = manager;
             this.game = game;
+            this.init();
         }
+        OrdersProcessor.prototype.init = function () {
+            this.game.input.onDown.add(function () {
+                var selectableStates = this.manager.getComponentsData('Selectable');
+                for (var entityId in selectableStates) {
+                    var selectableState = selectableStates[entityId];
+                    if (selectableState.selected &&
+                        this.manager.entityHasComponent(+entityId, 'Orders')) {
+                        var orders = this.manager.getComponentDataForEntity("Orders", +entityId);
+                        orders.type = "move";
+                        var x1 = this.game.input.x;
+                        var y1 = this.game.input.y;
+                        orders.target = { x: x1, y: y1 };
+                        this.manager.updateComponentDataForEntity("Orders", entityId, orders);
+                    }
+                }
+            }, this);
+        };
         OrdersProcessor.prototype.processOrders = function () {
             var Orderses = this.manager.getComponentsData('Orders');
             for (var entityId in Orderses) {
@@ -51,10 +69,11 @@ define(["require", "exports", "settings/GameStaticData", "utils/Utils"], functio
                 case "move":
                     {
                         var posState = this.manager.getComponentDataForEntity("Position", entityId);
-                        var target = { x: 500, y: 300 };
+                        var target = orders.target;
                         var radius = entityStaticData.radius;
                         if (Utils.Navigation.isInSourceRadius(posState, target, radius, 20)) {
                             orders.type = "float";
+                            orders.target = null;
                         }
                         else {
                             this.move(entityId, entityStaticData, target);
